@@ -20,4 +20,6 @@ resources :items do
    end
 end
 
+resources :tables, only:[:new,:create,:update,:destroy] 
+
 end

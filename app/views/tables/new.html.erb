@@ -1,0 +1,13 @@
+
+
+<div>テーブルの数は全部でいくつ？
+  <span >必須</span>
+</div>
+<%=form_with  url: tables_path, local: true do |f| %>
+<%= f.collection_select(:table_quantity_id, TableQuantity.all, :id, :id, {}) %>
+   
+<%= f.submit "登録する" %>
+      <%=link_to 'もどる', root_path %>
+    </div>
+<%end%>
+使えないテーブルがあったそのテーブルだけ削除する
