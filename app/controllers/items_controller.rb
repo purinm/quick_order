@@ -3,9 +3,9 @@ class ItemsController < ApplicationController
     @items = Item.all
     
     # @cart = Cart.find_by(params[:id])
-    # unless params[:keyword] == "1" || params[:keyword] == nil
-    #    @items = Item.where(genre_id: (params[:keyword])).order(created_at: :desc)
-    # end
+    unless params[:keyword] == "1" || params[:keyword] == nil
+       @items = Item.where(genre_id: (params[:keyword])).order(created_at: :desc)
+    end
 
     @item = Item.find_by( params[:id])
     
@@ -34,7 +34,17 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
-  
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    @item.update(item_params)
+    if @item.update(item_params)
+      redirect_to "/"    
+    else
+      render :edit
+      
+    end
   end
 
   def destroy

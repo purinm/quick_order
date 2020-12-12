@@ -8,26 +8,15 @@
 <%
 =end%>
   
-    <div>
-      <%= @item.name %>
-      <%= "#{@item.cost}円"%>
-    </div> 
-    <div>
-      <%= image_tag @item.image.variant(resize: '100x100')  %>
-    </div>
-    <div>
-    <%= @item.description %>
-    </div>
-      <% unless current_user.host_name.present? %>
-        <%= form_with model:@item, url: add_item_item_path(@item.id), method: :post,local: true do |f| %>
-          <%= f.label :quantity, '個数' %>
-          <%= f.select :quantity, [1,2,3,4,5], { include_blank: '選択してください', required: true}%>
-          <%= f.submit "カートへ" %> 
-        <% end %>
-     <% end %>
-    </div>
- 
-
- </div>
+<div>
+  <%= @item.name %>
+  <%= "#{@item.cost}円"%>
+</div> 
+<div>
+  <%= image_tag @item.image.variant(resize: '100x100')  %>
+</div>
+<div>
+  <%= @item.description %>
+</div>
  <%=link_to 'もどる', root_path %>
- <div>
+ 

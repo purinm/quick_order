@@ -1,9 +1,11 @@
 class Item < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+
   belongs_to :user
   # belongs_to :purchase
-  # belongs_to_active_hash :genre
+  belongs_to_active_hash :genre
   # belongs_to :cart_item, optional: true
-  # has_one_attached :image,dependent: true
+   has_one_attached :image,dependent: true
   # has_many_attached :images
 
   with_options presence: true do
