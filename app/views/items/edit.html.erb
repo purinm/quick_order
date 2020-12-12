@@ -1,0 +1,58 @@
+<h2 >メニュー編集</h2>
+    <%= form_with model:@item, url: items_path, local: true do |f| %>
+
+    <%
+=begin%>
+ <%= render 'devise/shared/error_messages', model: f.object %> 
+<%
+=end%>
+<%= javascript_pack_tag 'hello_vue' %>
+    <%= stylesheet_pack_tag 'hello_vue' %>
+
+    <div >
+      <div> 画像</div>
+      <div >
+        <p>
+          クリックしてファイルをアップロード
+        </p>
+        <%= f.file_field :image %>
+      <span >必須</span>
+      </div>
+    </div>
+    
+    <div >
+      <div > メニュー名 </div>
+      <%= f.text_area :name, placeholder:"半熟あつあつのたこやき", maxlength:"40" %>
+       <span >必須 40文字まで</span>
+      <div >
+        <div >
+          ひとこと紹介
+        </div>
+        <%= f.text_area :description, placeholder:"明石産の歯応えのあるたこを使用したたこ焼きです。" ,rows:"3" ,maxlength:"80" %>
+      <span > 80文字まで</span>
+      </div>
+    </div>
+
+    
+
+      <div>商品の詳細</div>
+      <div>
+        <div>カテゴリー<span >必須</span></div>
+        <%= f.collection_select(:genre_id, Genre.all, :id, :name, {}) %>
+     <div> 
+
+
+     <div>
+      <div>価格<span>必須</span></div>
+      <span>¥</span>
+      <%= f.text_field :cost, placeholder:"500" %>
+    </div>
+
+
+     <div>
+      <%= f.submit "編集完了" %>
+      <%=link_to 'もどる', root_path %>
+    </div>
+   
+  </div>
+  <% end %>

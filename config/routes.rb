@@ -1,3 +1,23 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  
+devise_for :users,controllers: {
+  registrations: 'users/registrations'
+}
+ devise_scope :user do
+  root to: "devise/sessions#new"
+end
+
+
+resources :items do
+  collection do
+    get 'search'
+  end
+  member do
+    resources :carts, only: [:show] 
+     post '/add_item' => 'carts#add_item'
+     post '/update_item' => 'carts#update_item'
+     delete '/delete_item' => 'carts#delete_item'
+   end
+end
+
 end

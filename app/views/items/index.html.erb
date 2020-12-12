@@ -1,0 +1,46 @@
+<h1>Top page</h1>
+
+<div >
+    <h2 >Menu</h2>
+    <div>
+   空いているtable id を自動的に付与する方法？
+   item showで複数画像？
+   エラー日本語
+   クレジット機能
+   最低限のビュー
+   </div>
+
+   <%= link_to "カートを見る", cart_path(current_user.id) %> 
+</div >
+<div >
+  <%
+=begin%>
+ <%= form_with(url: items_path, local: true, method: :get) do |form| %>
+    <%=select_tag "keyword",options_from_collection_for_select(Genre.all, "id", "name", "1")%>
+    <%= form.submit "検索", class: "search-btn" %>
+  <% end %> 
+<%
+=end%>
+</div >
+ <% @items.each do |item|%>
+  <li class='list'>
+    <%= link_to item_path(item.id)  do %>
+    <div class='item-img-content'>
+      <%= image_tag item.image.variant(resize: '100x100'), class: "item-img" %>
+    </div>
+
+      <div class='item-info'>
+        <h3 class='item-name'><%= item.name %></h3>
+        <div ><%= item.cost %>円<br></div>
+      </div>
+      <% if  current_user.host_name.present?%>
+        <%= link_to "削除",item_path(@item.id), method: :delete %> 
+      <% end %>
+    <% end %>
+  </li>
+<% end %>
+<% if @items.empty?%>
+  <h3>  選択のジャンルにメニューはありません。</h3>
+<% end %>
+
+</div>

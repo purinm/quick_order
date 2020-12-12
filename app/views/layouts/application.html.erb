@@ -1,15 +1,51 @@
+
 <!DOCTYPE html>
 <html>
   <head>
-    <title>QuickOrder</title>
+  
+    <title>OrderApp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+     <%
+=begin%>
+ <%= javascript_pack_tag 'hello_vue' %>
+    <%= stylesheet_pack_tag 'hello_vue' %> 
+<%
+=end%>
   </head>
-
   <body>
+    <header>
+      <div>
+        <h1><a href="/">Quick Order </a></h1>
+
+        <% if user_signed_in? %>
+         <div>
+           <%= link_to "アカウント編集", edit_user_registration_path %>
+         </div>
+          <div class="user_nav grid-6">
+            <%= link_to '新規メニュー', new_item_path %>
+            <%= link_to "オーダー管理","#" %>
+           
+            <%= link_to "Log out", destroy_user_session_path, method: :delete %>     
+           </div>     
+        <% else %>
+          <div>
+            <%= link_to "Log in", new_user_session_path %>
+            <%= link_to "Sign up", new_user_registration_path %>
+          </div>
+        <% end %>
+      </div>
+    </header>
     <%= yield %>
+    <footer>
+      <p>
+        Copyright Quick Order 2020.
+      </p>
+    </footer>
+    
   </body>
 </html>
