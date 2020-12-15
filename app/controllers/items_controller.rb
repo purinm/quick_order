@@ -9,8 +9,9 @@ class ItemsController < ApplicationController
     end
     @item = Item.find_by( params[:id])
     @nilcart = Cart.all
+    if @nilcart.present?
     @table_num = @nilcart[0][:table_id]
-
+    end
   end
 
   def new

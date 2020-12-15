@@ -2,7 +2,7 @@
 
  <%# div id ="item" data-json ="<%= @item.to_json %> 
 
-<%if @carts.blank?%>
+<%if @nilcart.present?%>
   <p>現在カートの中は空です</p>
 <% else %>
 

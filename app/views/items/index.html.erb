@@ -11,7 +11,9 @@
   
 <div>
 <% unless user_signed_in?%>
+<%if @nilcart.present?%>
 <%= link_to "カートを見る", cart_path(@item.id,@table_num) %> 
+<% end %> 
 <%= link_to "テーブル登録",  new_table_path%>
 <% end %> 
  <%= form_with(url: items_path, local: true, method: :get) do |form| %>
