@@ -1,15 +1,16 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, except:[:index,:show]
+
   def index
     @items = Item.all
-    
     # @cart = Cart.find_by(params[:id])
     unless params[:keyword] == "1" || params[:keyword] == nil
        @items = Item.where(genre_id: (params[:keyword])).order(created_at: :desc)
     end
-
     @item = Item.find_by( params[:id])
-    
-  
+    @nilcart = Cart.all
+    @table_num = @nilcart[0][:table_id]
+
   end
 
   def new
@@ -28,8 +29,8 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    # @cart_item = Cartitem.new
-    # @purchase = Purchase.where(item_id: @item.id)
+    @cart = Cart.new
+  #  @purchase = Purchase.where(item_id: @item.id)
   end
 
   def edit
@@ -53,17 +54,17 @@ class ItemsController < ApplicationController
      if  current_user.id == @item.user_id 
           @item.destroy
           redirect_to root_path
-    #  elsif current_user.host_name.present?
-    #      @cart_item = CartItem.find_by(params[:id]) 
-    #      @cart = Cart.find_by(cart_item_id:@cart_item.id)
+     elsif current_user.host_name.present?
+         @cart_item = CartItem.find_by(params[:id]) 
+         @cart = Cart.find_by(cart_item_id:@cart_item.id)
         
-    #     if @cart.present?
-    #       @cart.destroy
-    #     else @cart_item.present? 
-    #       @cart_item.delete
-    #       @item.destroy
-    #       redirect_to root_path
-    #     end
+        if @cart.present?
+          @cart.destroy
+        else @cart_item.present? 
+          @cart_item.delete
+          @item.destroy
+          redirect_to root_path
+        end
       end
   end
 

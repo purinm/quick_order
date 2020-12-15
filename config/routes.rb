@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
 devise_for :users,controllers: {
   registrations: 'users/registrations'
 }
@@ -17,9 +17,13 @@ resources :items do
      post '/add_item' => 'carts#add_item'
      post '/update_item' => 'carts#update_item'
      delete '/delete_item' => 'carts#delete_item'
+   
    end
 end
 
-resources :tables, only:[:new,:create,:update,:destroy] 
+resources :tables do
+   resources :carts,only:[:new,:create]
+end  
 
 end
+

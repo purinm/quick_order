@@ -1,0 +1,14 @@
+<div>
+  <p>現在登録中のテーブルはありません。</p>
+
+  <p>テーブルの数を選択  </p>
+  <%=form_with  url: tables_path, local: true do |f| %>
+  <%= f.collection_select(:table_quantity_id, TableQuantity.all, :id, :id, {}) %>
+  <span >必須</span>
+
+  <p><%= f.submit "登録する" %></p>
+  <p><%=link_to 'もどる', root_path %></p>
+  
+<%end%>
+
+

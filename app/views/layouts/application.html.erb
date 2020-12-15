@@ -28,16 +28,14 @@
          </div>
           <div class="user_nav grid-6">
             <%= link_to '新規メニュー', new_item_path %>
-            <%= link_to 'テーブル登録', new_table_path%>
+            <%= link_to 'テーブル管理', new_table_path%>
             <%= link_to "オーダー管理","#" %>
-           
             <%= link_to "Log out", destroy_user_session_path, method: :delete %>     
-           </div>     
-        <% else %>
-          <div>
-            <%= link_to "Log in", new_user_session_path %>
-            <%= link_to "Sign up", new_user_registration_path %>
-          </div>
+           </div> 
+          
+  
+            
+            
         <% end %>
       </div>
     </header>

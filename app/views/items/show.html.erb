@@ -18,5 +18,20 @@
 <div>
   <%= @item.description %>
 </div>
+
+ </div>
+      <% unless user_signed_in? %>
+        <%= form_with model:@item, url:add_item_item_path(@item.id), method: :post,local: true do |f| %>
+          <%= f.label :quantity, '個数' %>
+          <%= f.select :quantity, [1,2,3,4,5], { include_blank: '選択してください', required: true}%>
+          <%= f.submit "カートへ" %> 
+        <% end %>
+     <% end %>
+    </div>
+ 
+
+ </div>
  <%=link_to 'もどる', root_path %>
+ <div>
+
  

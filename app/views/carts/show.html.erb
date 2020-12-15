@@ -1,0 +1,47 @@
+<div id ="cart_form">
+
+ <%# div id ="item" data-json ="<%= @item.to_json %> 
+
+<%if @carts.blank?%>
+  <p>現在カートの中は空です</p>
+<% else %>
+
+
+  <% @carts.each do |cart|%>
+  <% @items.each do |item|%>
+
+  <% if cart.item_id == item.id%>
+  <%= item.name %>
+    <div id ="item_cost">
+      <%= "#{item.cost}円" %>
+    </div>
+    <div>    
+      <%= image_tag item.image.variant(resize: '100x100')  %>
+    </div>
+    <div id ="item_quantity">>
+      <%= "#{cart.quantity}個"%>
+    </div>
+    <div id ="cart_upload_form">
+      <%= form_with url: update_item_item_path(cart[:item_id]), local: true do |f| %>
+        <%= f.label :quantity, '個数' %>
+        <%= f.select("quantity", [1,2,3,4,5])%>
+        <%= f.submit "更新" %>
+        <%= link_to "削除", delete_item_item_path(item.id), method: :delete %> 
+    </div>
+  <%end %>
+  <%end %>
+
+  <%end %>
+<% end %>
+    
+<div>
+  <span>小計 (税込み)</span>
+  <span id='total'></span>円
+</div>
+<h2>オーダーする </h2>
+<% end %>
+<%=link_to 'もどる', root_path %>
+
+
+
+ 
