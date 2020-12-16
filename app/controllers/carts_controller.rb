@@ -9,7 +9,8 @@ class CartsController < ApplicationController
      @items = []
      @carts.each do |cart|
      @items.push(Item.find(cart[:item_id]))
-    end
+      end
+     @table_num = @carts[0][:table_id]
     end
    end
    

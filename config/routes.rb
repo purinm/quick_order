@@ -22,7 +22,10 @@ resources :items do
 end
 
 resources :tables do
-   resources :carts,only:[:new,:create]
+   resources :carts, only:[:new,:create] do
+   end
+    resources :orders, only:[:index] do
+   end
 end  
 
 end

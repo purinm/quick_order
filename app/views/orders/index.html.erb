@@ -1,0 +1,7 @@
+  <% @rows.each do |row|%>
+    <p>
+     <%= "#{row[:order][:table_id]}番テーブル"%>
+     <%= row[:item][:name] %>
+     <%= "#{row[:order][:quantity]}個"%>
+    </p>
+<%end %>

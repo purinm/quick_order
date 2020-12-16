@@ -38,7 +38,7 @@
   <span>小計 (税込み)</span>
   <span id='total'></span>円
 </div>
-<h2>オーダーする </h2>
+<h2><%=link_to "オーダー確定", table_orders_path(@table_num) %> </h2>
 <% end %>
 <%=link_to 'もどる', root_path %>
 
