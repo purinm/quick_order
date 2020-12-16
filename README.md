@@ -28,7 +28,9 @@ Quick Order (仮)
 # テーブル設計
 
 ## tableテーブル
-table_idのみ
+| Column             | Type       | Options                         |
+| ------------------ | ------     | -------------------------       |
+| using              |  boolean   | null: false ,default: true      |
 
 - has_many :orders
 - has_many :carts
@@ -103,6 +105,5 @@ table_idのみ
 |  total_cost    | integer    | null: false                    |
    
 ### Association
-
 - has_many : orders
 
