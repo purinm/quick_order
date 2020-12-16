@@ -86,10 +86,10 @@ Quick Order (仮)
 
 | Column          | Type       | Options                         |
 | --------------- | ---------- | ------------------------------- |
-| table           | references | null: false , foreign_key:true  |
+| table           | references | null: false, foreign_key:true   |
 | item            | references | null: false                     | 
 | quantity        | integer	   | null: false, default: 0         |   
-| purchase        | references | null: false, foreign_key:true   |
+| purchase        | references | null: true                      |
                         
 ### Association
 - belongs_to :purchase 
