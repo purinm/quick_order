@@ -46,14 +46,9 @@ class CartsController < ApplicationController
       @cart = Cart.find_by(item_id:params[:id])
       @cart.destroy
       redirect_to cart_path
-      
   end
 
   private
-#  def set_table_number
-#    table_num = @cart.table_id
-#  end
-
   def setup_cart_item!
     @nilcart = Cart.find_by(item_id:nil) #カートのitem_id=nulのレコードを探しておく
     @carts = Cart.find_by(item_id: params[:id]) #同じカートアイテムがないか探しておく

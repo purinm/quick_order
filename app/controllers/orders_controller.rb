@@ -5,18 +5,18 @@ class OrdersController < ApplicationController
     carts = Cart.all
     carts.destroy_all
     ActiveRecord::Base.connection.execute('ALTER TABLE carts AUTO_INCREMENT = 1')
-
-    # binding.pry
     orders = Order.all
-    @rows = []
+    @orderObject = {
+      total: 0,
+      rows: []
+    }
     orders.each do |order|
-    @rows.push({
-      order: order,
-      item: Item.find(order[:item_id])
-    })
-
-   
-   end
-   
+      item = Item.find(order[:item_id])
+      @orderObject[:rows].push({
+        order: order,
+        item: item
+      })
+      @orderObject[:total]+=order[:quantity]*item[:cost]
+     end
   end
 end

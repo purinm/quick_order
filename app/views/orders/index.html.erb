@@ -1,7 +1,20 @@
-  <% @rows.each do |row|%>
+
+<%if user_signed_in?%>
+  <% @orderObject[:rows].each do |row|%>
     <p>
-     <%= "#{row[:order][:table_id]}番テーブル"%>
-     <%= row[:item][:name] %>
-     <%= "#{row[:order][:quantity]}個"%>
+      <%= "#{row[:order][:table_id]}番テーブル"%>
+      <%= row[:item][:name] %>
+      <%= "#{row[:order][:quantity]}個"%>
     </p>
-<%end %>
+  <%end %>
+<% else %>
+<%= "登録テーブル#{@orderObject[:rows][0][:order][:table_id]}"%>
+  <% @orderObject[:rows].each do |row|%> 
+  <div> 
+      <span><%= row[:item][:name] %></span>
+      <span><%= row[:item][:cost] %></span>円
+      <span><%= row[:order][:quantity]%></span>個
+  </div>
+<% end %>
+ <p>合計金額<span id ="total"><%=@orderObject[:total]%>円</span> </p> 
+<% end %>
