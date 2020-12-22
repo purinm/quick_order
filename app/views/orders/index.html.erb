@@ -1,20 +1,26 @@
-
 <%if user_signed_in?%>
   <% @orderObject[:rows].each do |row|%>
     <p>
       <%= "#{row[:order][:table_id]}番テーブル"%>
       <%= row[:item][:name] %>
       <%= "#{row[:order][:quantity]}個"%>
+    <%= check_box_tag (:id_name) %>
     </p>
   <%end %>
 <% else %>
-<%= "登録テーブル#{@orderObject[:rows][0][:order][:table_id]}"%>
-  <% @orderObject[:rows].each do |row|%> 
-  <div> 
-      <span><%= row[:item][:name] %></span>
-      <span><%= row[:item][:cost] %></span>円
-      <span><%= row[:order][:quantity]%></span>個
-  </div>
-<% end %>
- <p>合計金額<span id ="total"><%=@orderObject[:total]%>円</span> </p> 
+  
+  <P> 選択中のテーブル<%= session[:table_id] %></p>
+    <% @orderObject[:rows].each do |row|%> 
+      <div> 
+          <span><%= row[:item][:name] %></span>
+          <span><%= row[:item][:cost] %></span>円
+          <span><%= row[:order][:quantity]%></span>個
+      </div>
+    <% end %>
+  <p>合計金額<span id ="total"><%=@orderObject[:total]%>円</span> </p> 
+  <% if @orderObject[:total] == 0 %>
+    <p>注文履歴はありません</p>
+  <% end %>
+  <p><%= link_to  "店頭支払いにする", items_path %></p>
+  <p><%= link_to  "クレジット支払い",  table_purchases_path(session[:table_id])%></p> 
 <% end %>

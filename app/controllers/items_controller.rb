@@ -3,15 +3,10 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all
-    # @cart = Cart.find_by(params[:id])
     unless params[:keyword] == "1" || params[:keyword] == nil
        @items = Item.where(genre_id: (params[:keyword])).order(created_at: :desc)
     end
-    @item = Item.find_by( params[:id])
-    @nilcart = Cart.all
-    if @nilcart.present?
-    @table_num = @nilcart[0][:table_id]
-    end
+    @carts = Cart.find_by(table_id: session[:table_id])
   end
 
   def new

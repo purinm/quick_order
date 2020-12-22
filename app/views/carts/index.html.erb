@@ -1,0 +1,37 @@
+<div id ="cart_form">
+
+<%if @sets.blank? %>
+  <p>現在カートの中は空です</p>
+  <p>注文したいものをカートに入れよう！</p>
+<% else %>
+  <% @sets.each do |set| %>
+    <%= set[:item][:name] %>
+    <div >
+      <%= "#{set[:item][:cost]}円" %>
+    </div>
+    <div>    
+      <%= image_tag set[:item].image.variant(resize: '100x100')  %>
+    </div>
+    <div>
+      <%= "#{set[:quantity]}個" %>
+    </div>
+    <div >
+      <%= form_with url: carts_update_item_item_path(set[:item][:id]), local: true do |f| %>
+        <%= f.label :quantity, '個数' %>
+        <%= f.select("quantity", [1,2,3,4,5])%>
+        <%= f.submit "更新" %>
+        <%= link_to "削除", carts_delete_item_item_path(set[:item][:id]), method: :delete %> 
+      <%end %>
+    </div>
+  <% end %>
+    <div>
+      <span>小計 (税込み)</span>
+      <span id='total'></span>円
+    </div>
+    <h2><%=link_to "オーダー確定", orders_path %> </h2>
+<% end %>
+<%=link_to 'もどる', root_path %>
+
+
+
+ 

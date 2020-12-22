@@ -34,7 +34,7 @@ Quick Order (仮)
 
 - has_many :orders
 - has_many :carts
-- has_one :purchase
+- belongs_to :purchase
 
 
 ## admin userテーブル
@@ -86,7 +86,7 @@ Quick Order (仮)
 
 | Column          | Type       | Options                         |
 | --------------- | ---------- | ------------------------------- |
-| table           | references | null: false, foreign_key:true   |
+| table           | references | null: false                     |
 | item            | references | null: false                     | 
 | quantity        | integer	   | null: false, default: 0         |   
 | purchase        | references | null: true                      |
@@ -106,4 +106,4 @@ Quick Order (仮)
    
 ### Association
 - has_many : orders
-
+- has_one :table

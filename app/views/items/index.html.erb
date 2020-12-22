@@ -3,23 +3,35 @@
 <div >
     <h2 >Menu</h2>
     <div>
-   空いているtable id を自動的に付与する方法？
-   item showで複数画像？
-   order.index.erbにチェックbox
-   formで送信 cartからorder?
-   table cont new ページ遷移問題
+   オーダーテーブルの時間０を直す
+   １テーブル毎に管理する機能
+   テーブル選択をQRcodeで付与
+   item showで複数画像
+   チェックbox db
    エラー日本語
-   クレジット機能
+
    最低限のビュー
-   root_path 
-  
 <div>
-<% unless user_signed_in?%>
-<%if @nilcart.present?%>
-<%= link_to "カートを見る", cart_path(@item.id,@table_num) %> 
-<% end %> 
-<%= link_to "テーブル登録",  new_table_path%>
-<% end %> 
+
+<%
+=begin%>
+ <% unless user_signed_in? %>
+ <% if session[:table_id].present? %>
+    <P>
+      選択中のテーブル
+      <%= session[:table_id] %>
+    </p>
+    <%= link_to "カートを見る", table_carts_path(session[:table_id])%>
+    <%= link_to "注文履歴を見る", orders_path%>
+    <%= link_to "テーブル再選択", new_table_path%>
+    
+  <% else %>
+    <%= link_to "テーブル選択",  new_table_path%>
+  <% end %> 
+<% end %>  
+<%
+=end%>
+
  <%= form_with(url: items_path, local: true, method: :get) do |form| %>
     <%=select_tag "keyword",options_from_collection_for_select(Genre.all, "id", "name", "1")%>
     <%= form.submit "検索", class: "search-btn" %>
@@ -38,8 +50,8 @@
         <div ><%= item.cost %>円<br></div>
       </div>
       <% if  user_signed_in? && current_user.id == item.user_id %>
-        <%= link_to "編集", edit_item_path(@item.id) %> 
-        <%= link_to "削除",item_path(@item.id), method: :delete %> 
+        <%= link_to "編集", edit_item_path(item.id) %> 
+        <%= link_to "削除",item_path(item.id), method: :delete %> 
       <% end %>
     <% end %>
   </li>

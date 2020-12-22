@@ -1,14 +1,4 @@
-<%
-=begin%>
- <div class="messages">
-    <% message.images.each do |image| %>
-      <%= image_tag image, class:'images' %>
-    <% end %>
-  </div> 
-<%
-=end%>
-  
-<div>
+  <div>
   <%= @item.name %>
   <%= "#{@item.cost}円"%>
 </div> 
@@ -21,7 +11,7 @@
 
  </div>
       <% unless user_signed_in? %>
-        <%= form_with model:@item, url:add_item_item_path(@item.id), method: :post,local: true do |f| %>
+        <%= form_with url: carts_add_item_item_path(@item.id),local: true do |f| %>
           <%= f.label :quantity, '個数' %>
           <%= f.select :quantity, [1,2,3,4,5], { include_blank: '選択してください', required: true}%>
           <%= f.submit "カートへ" %> 
@@ -31,7 +21,7 @@
  
 
  </div>
- <%=link_to 'もどる', root_path %>
+ <%=link_to 'もどる', items_path %>
  <div>
 
  

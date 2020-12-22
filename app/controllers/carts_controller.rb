@@ -1,60 +1,61 @@
 class CartsController < ApplicationController
-  before_action :setup_cart_item!, only: [:add_item, :update_item, :delete_item]
-  # after_action  :set_table_number, only: [:create]
+  # before_action :has_cart_check, only: [:add_item, :update_item, :delete_item]
 
-   def show
-     @nilcart = Cart.find_by(item_id:nil)
-     if @nilcart.blank?
-     @carts = Cart.all  
-     @items = []
-     @carts.each do |cart|
-     @items.push(Item.find(cart[:item_id]))
+   def index
+    carts = Cart.where(table_id: session[:table_id])
+    if carts.present?
+      @sets = []
+      carts.each do |cart|
+        item = Item.find(cart[:item_id])
+        @sets.push({
+          item: item,
+          quantity: cart[:quantity]
+        })
       end
-     @table_num = @carts[0][:table_id]
     end
    end
    
    #table登録と同時にカートをつくる(item_id= null)
    def create
-   @cart = Cart.create(table_id:params[:table][:id])
-    redirect_to items_path
+   session[:table_id] = params[:table][:id]
+   redirect_to items_path
    end
 
   # カートへ を押した時のアクション
    def add_item
-     if @nilcart.present?
-        @first_cart = Cart.update(item_id:params[:id],quantity:params[:item][:quantity])
-     elsif @carts.present?
-           @carts[:quantity]+= params[:item][:quantity].to_i 
-           @carts.save
-     else  @nilcart = Cart.all
-          table_num = @nilcart[0][:table_id]
-          @carts = Cart.create(table_id:table_num,item_id:params[:id],quantity:params[:item][:quantity])
-     end
+    # binding.pry
+    @carts = Cart.find_by(table_id: session[:table_id], item_id:params[:id]) #同じカートアイテムがないか探しておく
+    if @carts.present? 
+      @carts[:quantity]+= params[:quantity].to_i 
+      @carts.save
+    else
+      @carts = Cart.create(table_id:session[:table_id], item_id:params[:id],quantity:params[:quantity])
+    end
      redirect_to items_path
    end
 
   # カート詳細画面から、「更新」を押した時のアクション
   def update_item
-    @cart = Cart.find_by(item_id: params[:id])
+    @cart = Cart.find_by(table_id: session[:table_id], item_id: params[:id])
     @cart.update(quantity: params[:quantity].to_i)
-    redirect_to cart_path
+    redirect_to  table_carts_path(@cart.table_id)
   end
 
  # カート詳細画面から、「削除」を押した時のアクション
   def delete_item
-      @cart = Cart.find_by(item_id:params[:id])
-      @cart.destroy
-      redirect_to cart_path
+      @cart = Cart.find_by(table_id:session[:table_id], item_id:params[:id])
+      unless @cart.blank?
+        @cart.destroy
+      end
+      redirect_to table_carts_path(@cart.table_id)
   end
 
-  private
-  def setup_cart_item!
-    @nilcart = Cart.find_by(item_id:nil) #カートのitem_id=nulのレコードを探しておく
-    @carts = Cart.find_by(item_id: params[:id]) #同じカートアイテムがないか探しておく
-    
-  end
-
+# def has_cart_check
+#   @carts = Cart.find_by(table_id: session[:table_id])
+#   if @carts.blank?
+#    redirect_to table_carts_path(@carts.table_id)
+#   end
+# end
 end
 
 

@@ -1,5 +1,5 @@
 <div>
-  <p>テーブル番号を選択  </p>
+  <p>使用するテーブルを選択  </p>
   <%=form_with model:@tables, url: table_carts_path(@tables.ids),local: true do |f| %>
   <%= f.collection_select(:id, @tables, :id, :id, {}) %>
   <span >必須</span>

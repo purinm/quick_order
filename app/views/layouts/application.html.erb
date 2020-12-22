@@ -1,15 +1,12 @@
-
 <!DOCTYPE html>
 <html>
-  <head>
-  
-    <title>OrderApp</title>
+  <head> 
+    <title>Quick Order</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+     <script type="text/javascript" src="https://js.pay.jp/v1/"></script>
      <%
 =begin%>
  <%= javascript_pack_tag 'hello_vue' %>
@@ -21,30 +18,35 @@
     <header>
       <div>
         <h1><a href="/">Quick Order </a></h1>
-
         <% if user_signed_in? %>
+        <p><%="こんにちは、#{current_user.name}さん"%></p>
          <div>
            <%= link_to "アカウント編集", edit_user_registration_path %>
          </div>
           <div class="user_nav grid-6">
             <%= link_to '新規メニュー', new_item_path %>
-            <%= link_to 'テーブル管理', new_table_path%>
-            <%= link_to "オーダー管理",table_orders_path %>
+            <%= link_to 'テーブル管理',  new_table_path %>
+            <%= link_to "オーダー管理",orders_path %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete %>     
            </div> 
-          
-  
-            
-            
-        <% end %>
+        <% else%>
+            <% unless user_signed_in? %>
+              <p>こんにちは、ゲストさん 
+              <% if session[:table_id].present? %> </p>
+                  <p>選択中のテーブルは　<%= session[:table_id] %></p>
+                  <%= link_to "カートを見る", table_carts_path(session[:table_id])%>
+                  <%= link_to "注文履歴を見る", orders_path%>
+                  <%= link_to "テーブル再選択", new_table_path%>
+                <% else %>
+                  <%= link_to "テーブル選択",  new_table_path%>
+                <% end %> 
+              <% end %>   
+          <% end %>
       </div>
     </header>
     <%= yield %>
     <footer>
-      <p>
-        Copyright Quick Order 2020.
-      </p>
-    </footer>
-    
+      <p> Copyright Quick Order 2020.</p>
+    </footer>  
   </body>
 </html>

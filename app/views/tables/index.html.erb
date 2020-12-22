@@ -1,10 +1,23 @@
- 削除ボタン
- <%=link_to 'もどる', root_path %>
+<p>使用中のテーブル</p>
+<% if @tables.present? %>
  <% @tables.each do |table|%>
-  <h3><%= table.id %></h3>
-    <%if table.using == true %>
-      <%= link_to "未使用にする",table_path(table.id), method: :put %> 
+ <p><%= table.id %></p>
+    <%
+=begin%>
+ <%if table.using == true %>
+        <%= link_to "使用中","#", method: :put %> 
     <% else %>
-      <%= link_to "使用中にする", "#" %> 
+        <%= link_to "未使用", "#" %> 
+    <% end %> 
+<%
+=end%>
   <% end %>
+  <%=link_to 'テーブル再登録',tables_path, method: :post %>
+<% else %>
+    <p>現在登録中のテーブルはありません。</p>
 <% end %>
+<%=link_to 'もどる', items_path %>
+
+
+
+

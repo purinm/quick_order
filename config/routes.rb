@@ -1,32 +1,35 @@
 Rails.application.routes.draw do
-
-devise_for :users,controllers: {
-  registrations: 'users/registrations'
-}
- devise_scope :user do
-  root to: "devise/sessions#new"
-end
-
+#signup
+devise_for :users
+# , controllers: {
+#   registrations: 'users/registrations'
+# }
+# #signin
+# devise_scope :user do
+#   root to: "devise/sessions#new"
+# end
+root to: "items#index"
 
 resources :items do
   collection do
     get 'search'
   end
-  member do
-    resources :carts, only: [:show] 
-     post '/add_item' => 'carts#add_item'
-     post '/update_item' => 'carts#update_item'
-     delete '/delete_item' => 'carts#delete_item'
-   
-   end
+ member do
+  post '/carts/add_item' => 'carts#add_item'
+  post '/carts/update_item' => 'carts#update_item'
+  delete '/carts/delete_item' => 'carts#delete_item'
+  end
 end
 
+resources :orders, only:[:index] 
+
 resources :tables do
-   resources :carts, only:[:new,:create] do
+   resources :carts, only:[:index,:new,:create] do
    end
-    resources :orders, only:[:index] do
+    resources :purchases, only:[:index,:create] do
    end
 end  
+
 
 end
 
