@@ -1,3 +1,5 @@
+<%= render "devise/shared/header" %>
+<div class="table_info">
 <p>使用中のテーブル</p>
 <% if @tables.present? %>
  <% @tables.each do |table|%>
@@ -12,11 +14,13 @@
 <%
 =end%>
   <% end %>
-  <%=link_to 'テーブル再登録',tables_path, method: :post %>
+  <%=link_to 'テーブル再登録',tables_path, method: :post%>
 <% else %>
     <p>現在登録中のテーブルはありません。</p>
 <% end %>
 <%=link_to 'もどる', items_path %>
+</div>
+<%= render "devise/shared/footer" %>
 
 
 

@@ -1,9 +1,12 @@
-<div>
-  <p>使用するテーブルを選択  </p>
-  <%=form_with model:@tables, url: table_carts_path(@tables.ids),local: true do |f| %>
-  <%= f.collection_select(:id, @tables, :id, :id, {}) %>
-  <span >必須</span>
-  <p><%= f.submit "決定" %></p>
+<%= render "devise/shared/header" %>
+<div  class="table_info">
+  <p>使用するテーブルを選択してください <span>（必須）</span> </p>
+    <div class="show-cart-form">   
+    <%=form_with model:@tables, url: table_carts_path(@tables.ids),local: true do |f| %>
+      <%= f.collection_select(:id, @tables, :id, :id, {}) %>
+    <p><%= f.submit "決定" %></p>
+    <%end%>
+    </div>
   <p><%=link_to 'もどる', items_path %></p>
-  
-<%end%>
+</div>
+<%= render "devise/shared/footer" %>

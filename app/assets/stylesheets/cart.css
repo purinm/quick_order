@@ -1,0 +1,26 @@
+.show-cart-inner{
+background-color: #FFF;
+display: block;
+padding: 10vh 0;
+width: 100vw;
+}
+.show-cart-inner>.list {
+  width: 37vh;
+  padding: 3vw;
+  background-color: #FFF;
+  list-style: none;
+  border:solid 2px  #fff5ea;
+  margin:0 auto;
+}
+.show-cart-quantity{
+  display: flex;
+  justify-content: space-between;
+}
+.show-cart-form{
+  
+  padding:4vh 0;
+  width:150;
+  
+  
+}
+

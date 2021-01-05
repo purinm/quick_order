@@ -1,36 +1,47 @@
+<%= render "devise/shared/header" %>
 <div id ="cart_form">
+<div class ="item-inner" >
 
-<%if @sets.blank? %>
-  <p>現在カートの中は空です</p>
-  <p>注文したいものをカートに入れよう！</p>
-<% else %>
-  <% @sets.each do |set| %>
-    <%= set[:item][:name] %>
-    <div >
-      <%= "#{set[:item][:cost]}円" %>
+  <%if @sets.blank? %>
+    <p>現在カートの中は空です</p>
+    <%=link_to 'もどる', root_path %>
+  <% else %>
+    <p>カートの中は以下のメニューです</p>
+<div class ="show-cart-inner" >
+    <% @sets.each do |set| %>
+    <div class="list">
+      
+      <div>    
+        <%= image_tag set[:item].image.variant(resize: '100x100'), class: "item-img"%>
+      </div>
+      <div class="item-info">
+        <p><%= set[:item][:name] %></p>
+        <div class="show-cart-quantity">
+          <p><%= "#{set[:item][:cost]}円" %>
+          <p><%= "#{set[:quantity]}個" %></p>
+        </div>
+      </div>
+      
+     
+      <div class="show-cart-form">
+        <%= form_with url: carts_update_item_item_path(set[:item][:id]), local: true do |f| %>
+          <%= f.label :quantity, '個数' %>
+          <%= f.select("quantity", [1,2,3,4,5])%>
+          <%= f.submit "更新" %>
+          <%= link_to "削除", carts_delete_item_item_path(set[:item][:id]), method: :delete %> 
+        <%end %>
+      </div>
     </div>
-    <div>    
-      <%= image_tag set[:item].image.variant(resize: '100x100')  %>
-    </div>
-    <div>
-      <%= "#{set[:quantity]}個" %>
-    </div>
-    <div >
-      <%= form_with url: carts_update_item_item_path(set[:item][:id]), local: true do |f| %>
-        <%= f.label :quantity, '個数' %>
-        <%= f.select("quantity", [1,2,3,4,5])%>
-        <%= f.submit "更新" %>
-        <%= link_to "削除", carts_delete_item_item_path(set[:item][:id]), method: :delete %> 
-      <%end %>
+    <% end %>
+</div>
+
+    <div class="item-form">
+      <h4><%=link_to "オーダー確定", orders_path %> </h4>
+      <%=link_to 'もどる', root_path %>
     </div>
   <% end %>
-    <div>
-      <span>小計 (税込み)</span>
-      <span id='total'></span>円
-    </div>
-    <h2><%=link_to "オーダー確定", orders_path %> </h2>
-<% end %>
-<%=link_to 'もどる', root_path %>
+ </div>
+<%= render "devise/shared/footer" %>
 
 
 

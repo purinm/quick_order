@@ -1,27 +1,29 @@
-  <div>
-  <%= @item.name %>
-  <%= "#{@item.cost}円"%>
-</div> 
-<div>
-  <%= image_tag @item.image.variant(resize: '100x100')  %>
-</div>
-<div>
-  <%= @item.description %>
-</div>
-
- </div>
-      <% unless user_signed_in? %>
-        <%= form_with url: carts_add_item_item_path(@item.id),local: true do |f| %>
-          <%= f.label :quantity, '個数' %>
-          <%= f.select :quantity, [1,2,3,4,5], { include_blank: '選択してください', required: true}%>
-          <%= f.submit "カートへ" %> 
-        <% end %>
-     <% end %>
-    </div>
- 
-
- </div>
+<%= render "devise/shared/header" %>
+<div class ="item-content" >
+<div class="item-inner">
+   <div class="list">
+      <div>
+        <%= image_tag @item.image.variant(resize: '200x200') ,class: "item-img" %>
+      </div>
+      <div class="item-info">
+        <p ><%= @item.name %></p>
+        <p ><%= @item.cost %>円<br></p>
+      </div>
+   </div>   
+   <p class="item-form"><%= @item.description %></p>
+  
+  
+    <% unless user_signed_in? %>
+      <%= form_with url: carts_add_item_item_path(@item.id),local: true do |f| %>
+        <%= f.label :quantity, '個数' %>
+        <%= f.select :quantity, [1,2,3,4,5], { include_blank: '選択してください', required: true}%>
+        <%= f.submit "カートへ" %> 
+      <% end %>
+    <% end %>
  <%=link_to 'もどる', items_path %>
- <div>
+</div>
+</div>
+
+ <%= render "devise/shared/footer" %>
 
  

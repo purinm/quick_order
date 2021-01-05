@@ -1,0 +1,97 @@
+* {
+  box-sizing: border-box;
+}
+/* .header{
+  text-align: left;
+} */
+header{
+  color:#554942;
+}
+.body {
+  overflow: scroll;
+  background-color: #FFF;
+  text-align: center;
+  color:#554942;  
+}
+.item-form{
+padding:4vh 2vw;
+}
+.item-content {
+  background-color: #FFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding: 10vh 0; */
+}
+.item-inner{
+  background-color: #FFF;
+  display: inline-block;
+  justify-content:space-around;
+  padding: 10vh 0;
+  width: 100vw;
+  flex-wrap: wrap;
+}
+.item-inner>.list {
+  width: 37vh;
+  padding: 3vw;
+  background-color: #FFF;
+  list-style: none;
+  border:solid 2px  #fff5ea;
+  display: inline-block;
+}
+.item-img-content {
+  position: relative;
+  text-align: center;
+  width: 200px;
+  height: 200px;
+  margin:0 auto;
+}
+.item-info{
+  padding-top: 2vh;
+  text-align: left;
+  font-size: 2.5vh;
+  text-decoration: none;
+  align-content:flex-end;
+ 
+}
+.item-info p{
+margin-bottom:0;
+}
+
+.title-contents {
+  width: 100vw;
+  height:350px;
+  background-image: url("coffee-5037804_1920.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 5vh 15vw;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+footer{
+  height:20vh;
+}
+.footer {
+ 
+  padding: 3vh ;
+  color: #FFF;
+  background-color:#faedd5;
+  text-align: center;
+  line-height: 32px;
+  color:#554942;
+}
+
+.footer-contents {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5vh;
+}
+.footer-lists > li{
+ list-style: none;
+ 
+}

@@ -1,0 +1,40 @@
+
+.order-content{
+padding: 5vh 0;
+width:80%;
+background-color: #FFF;
+text-align: center;
+margin:0 auto;
+}
+.order-content2{
+padding: 5vh 0;
+width:300px;
+background-color: #FFF;
+text-align: center;
+margin:0 auto;
+
+}
+.order-list{
+  padding: 1vw;
+  display: flex;
+}
+
+.order-list2{
+  padding: 1vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-list > p:first-child{
+  padding:0;
+  display: inline-block;
+}
+.order-list > p{
+  padding-left: 4vh;
+  display: inline-block;
+}
+
+
+.order-space{
+  padding-top:6vh;
+}

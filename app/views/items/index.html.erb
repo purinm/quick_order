@@ -1,63 +1,34 @@
-<h1>Top page</h1>
-
-<div >
-    <h2 >Menu</h2>
-    <div>
-   オーダーテーブルの時間０を直す
-   １テーブル毎に管理する機能
-   テーブル選択をQRcodeで付与
-   item showで複数画像
-   チェックbox db
-   エラー日本語
-
-   最低限のビュー
-<div>
-
-<%
-=begin%>
- <% unless user_signed_in? %>
- <% if session[:table_id].present? %>
-    <P>
-      選択中のテーブル
-      <%= session[:table_id] %>
-    </p>
-    <%= link_to "カートを見る", table_carts_path(session[:table_id])%>
-    <%= link_to "注文履歴を見る", orders_path%>
-    <%= link_to "テーブル再選択", new_table_path%>
-    
-  <% else %>
-    <%= link_to "テーブル選択",  new_table_path%>
-  <% end %> 
-<% end %>  
-<%
-=end%>
-
+<%= render "devise/shared/header" %>
+<div class="item-form">
+ <h3>Menu</h3> 
  <%= form_with(url: items_path, local: true, method: :get) do |form| %>
     <%=select_tag "keyword",options_from_collection_for_select(Genre.all, "id", "name", "1")%>
     <%= form.submit "検索", class: "search-btn" %>
   <% end %> 
-
 </div >
- <% @items.each do |item|%>
-  <li class='list'>
-    <%= link_to item_path(item.id)  do %>
-    <div class='item-img-content'>
-      <%= image_tag item.image.variant(resize: '100x100'), class: "item-img" %>
-    </div>
+<div class ="item-content" >
+   <ul class ="item-inner">
+    <% @items.each do |item|%>
+      <li class='list'>
+        <%= link_to item_path(item.id)  do %>
+          <div class='item-img-content'>
+            <%= image_tag item.image.variant(resize: '200x200'), class: "item-img" %>
+          </div>
 
-      <div class='item-info'>
-        <h3 class='item-name'><%= item.name %></h3>
-        <div ><%= item.cost %>円<br></div>
-      </div>
-      <% if  user_signed_in? && current_user.id == item.user_id %>
-        <%= link_to "編集", edit_item_path(item.id) %> 
-        <%= link_to "削除",item_path(item.id), method: :delete %> 
-      <% end %>
+          <div class='item-info'>
+            <p><%= item.name %></p>
+            <div ><%= item.cost %>円<br></div>
+          </div>
+          <% if  user_signed_in? && current_user.id == item.user_id %>
+            <%= link_to "編集", edit_item_path(item.id) %> 
+            <%= link_to "削除",item_path(item.id), method: :delete %> 
+          <% end %>
+         <% end %>
+      </li>
     <% end %>
-  </li>
-<% end %>
-<% if @items.empty?%>
-  <h3>  選択のジャンルにメニューはありません。</h3>
-<% end %>
-
+    <% if @items.empty?%>
+      <p>  選択のジャンルにメニューはありません。</p>
+    <% end %>
+  </ul>
 </div>
+<%= render "devise/shared/footer" %>

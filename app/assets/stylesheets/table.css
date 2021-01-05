@@ -1,0 +1,24 @@
+.table_info{
+  padding: 8vh ;
+  background-color: #FFF;
+  line-height: 32px;
+}
+.table_info>.p:last-child{
+  margin :0 0 0 3vh;
+}
+.show-cart-form{
+  width:30vw;
+  margin:0 auto;  
+  
+}
+/* form{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+form > p{
+  padding-left:4vw ;
+}
+select::-webkit-search-results-button{
+
+} */
