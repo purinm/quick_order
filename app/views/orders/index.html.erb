@@ -5,9 +5,15 @@
     <% @orderObject[:rows].each do |row|%>
     <div class ="order-list" >
       <p>  <%= check_box_tag (:id_name) %></p>
+      
       <p>  <%= "#{row[:order][:table_id]}番テーブル"%></p>
       <p>  <%= row[:item][:name] %></p>
       <p>  <%= "#{row[:order][:quantity]}個"%> </p> 
+      <% if row[:order][:purchase_id] == nil %>
+       <p> 未 </p>
+      <% else %>
+       <p> 済  </p> 
+      <% end %>
     </div>
     <%end %>
 </div>
