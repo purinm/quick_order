@@ -2,26 +2,21 @@
 
   <%if user_signed_in?%>
   <div class="order-space">
-    <h4>提供未</h4>
   </div>
 <div class ="order-content" >
-
   <table>
    <thead>
       <tr>
-        <th>提供</th>
+        <th></th>
         <th>テーブル番号</th>
         <th>メニュー</th>
         <th>個数</th>
         <th>支払い</th>
       </tr>
     </thead>
-    <div class ="order-inner-content" >
-    <tbody>
       <% @orderObject[:rows].each do |row|%>
-        <div class ="order-list" >
-        <tr>
-          <td> <%= check_box_tag "reserved-boxes", true, false, {}%></td>
+        <tr >
+          <td > <%= check_box_tag "checked-boxes", true, false, {}%></td>
           <td><%= "#{row[:order][:table_id]}"%></td>
           <td> <%= row[:item][:name] %></td>
           <td><%= "#{row[:order][:quantity]}"%> </td>
@@ -33,16 +28,12 @@
         </tr>
       <%end %>   
     </tbody>
-    </div>
   </table>
-  </div>
 </div>
- <div class="order-space">
-    <h4>提供済み</h4>
-  </div>
-<div class ="order-content">
-aa
+<div class="order-space">
+ <button>更新</button>
 </div>
+ 
 <% else %>
   <div class ="order-content2" >
     <% @orderObject[:rows].each do |row|%> 

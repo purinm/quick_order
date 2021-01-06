@@ -1,34 +1,39 @@
-
 .order-content{
-  padding-top: 5vh;
+  padding: 5vh 0;
   width:80%;
   background-color: #FFF;
-  margin:0 auto;
-  overflow:scroll;
-  
+  margin:0 auto;  
+  height:400px;
+ 
 }
 .order-content:last-child{
   padding:5vh 5vh 0 0 ;
 }
+
 table{
-max-height: 20vh;
-display: inline-block;
-}
-table {
   margin: 20px auto;
   border-collapse: collapse;
+  position: relative;
+}
+tbody{
+  position:absolute;
+  max-height: 200px;
+  overflow:scroll;
 }
 th, td {
   width: 105px;
   box-sizing: border-box;
   border: 1px solid #e9eae8;
-  
+}
+
+thead th:nth-child(3) {
+  width: 300px;
 }
 tbody td:nth-child(3) {
   width: 300px;
 }
 
-.reserved-content{
+.checked-boxes{
 }
 .order-content2{
 padding: 5vh 0 ;
@@ -36,9 +41,6 @@ width:300px;
 background-color: #FFF;
 text-align: center;
 margin:0 auto;
-}
-.order-list{
-  display: flex;
 }
 
 .order-list2{
@@ -51,9 +53,10 @@ margin:0 auto;
 }
 
 .order-space{
-  padding-top:6vh;
+  padding:5vh 0;
 }
 
-.reserved-boxes :read-only{
+.reserved{
   opacity: 0.5;
+  background-color: rgb(212, 211, 211);
 }
