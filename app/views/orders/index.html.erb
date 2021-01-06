@@ -1,21 +1,47 @@
 <%= render "devise/shared/header" %>
 
   <%if user_signed_in?%>
+  <div class="order-space">
+    <h4>提供未</h4>
+  </div>
 <div class ="order-content" >
-    <% @orderObject[:rows].each do |row|%>
-    <div class ="order-list" >
-      <p>  <%= check_box_tag (:id_name) %></p>
-      
-      <p>  <%= "#{row[:order][:table_id]}番テーブル"%></p>
-      <p>  <%= row[:item][:name] %></p>
-      <p>  <%= "#{row[:order][:quantity]}個"%> </p> 
-      <% if row[:order][:purchase_id] == nil %>
-       <p> 未 </p>
-      <% else %>
-       <p> 済  </p> 
-      <% end %>
+
+  <table>
+   <thead>
+      <tr>
+        <th>提供</th>
+        <th>テーブル番号</th>
+        <th>メニュー</th>
+        <th>個数</th>
+        <th>支払い</th>
+      </tr>
+    </thead>
+    <div class ="order-inner-content" >
+    <tbody>
+      <% @orderObject[:rows].each do |row|%>
+        <div class ="order-list" >
+        <tr>
+          <td> <%= check_box_tag "reserved-boxes", true, false, {}%></td>
+          <td><%= "#{row[:order][:table_id]}"%></td>
+          <td> <%= row[:item][:name] %></td>
+          <td><%= "#{row[:order][:quantity]}"%> </td>
+          <td> 
+            <% if row[:order][:purchase_id] == nil %> 未 
+            <% else %> 済 
+            <% end %>
+          </td>
+        </tr>
+      <%end %>   
+    </tbody>
     </div>
-    <%end %>
+  </table>
+  </div>
+</div>
+ <div class="order-space">
+    <h4>提供済み</h4>
+  </div>
+<div class ="order-content">
+aa
 </div>
 <% else %>
   <div class ="order-content2" >
