@@ -13,17 +13,24 @@ Quick Order (仮)
 ## DEMO 
 
 ## 実装内容の予定
-1. user/ seller
+1. user/店側
 - メニュー管理(メニュー登録、削除、編集 )
 - オーダー管理（オーダー・支払い状況確認）
 - テーブル管理（登録・削除）
 - 支払い管理（請求内容表示、決済の有無確認、決済完了処理）
 
-2. buyer
+2. buyer/客側
+- テーブル選択/再選択
 - メニュー一覧表示
 - メニュー詳細表示
 - カート管理（登録・表示・削除・個数更新）
+- オーダー履歴表示
 - 決済機能
+
+## フロー
+## buyer/客側
+
+[![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBW-OBiuWuouanmF0gLS0-Qyjjg4jjg4Pjg5fjg5rjg7zjgrgv44Oh44OL44Ol44O85LiA6KanKVxuICAgIEMgLS0-IHzjg6Hjg4vjg6Xjg7zpgbjmip58IEQo44Oh44OL44Ol44O86Kmz57SwKVxuICAgIEQtLT585YCL5pWw6YG45oqefExb44Kr44O844OI5L-d5a2YXVxu44CA44CAIEzjgIAtLT7jgIBDXG5cbiAgICBDLS0-fOOCq-ODvOODiOihqOekunwgRijjgqvjg7zjg4jlhoXkuIDopqfooajnpLopXG7jgIAgIEYgLS0-fOWAi-aVsOabtOaWsC_liYrpmaR8IEdb44Kq44O844OA44O856K65a6aXVxuICAgIEfjgIAtLT7jgIBDXG5cbiAgICBDLS0-fOOCquODvOODgOODvOWxpeattHwgSCjjgqrjg7zjg4Djg7zkuIDopqfooajnpLopXG7jgIAgIEggLS0-IHzjgq_jg6zjgrjjg4Pjg4jjgqvjg7zjg4nmlK_miZXjgYR8IEko44Kr44O844OJ5oOF5aCx5YWl5YqbKVxu44CA44CASC0tPnzlupfpoK3mlK_miZXjgYR8IENcbiAgIEktLT5KW-axuua4iF1cbuOAgOOAgErjgIAtLT7jgIBDXG7jgIBcbuOAgOOAgEMgLS0-IHzjg4bjg7zjg5bjg6vpgbjmip4v5YaN6YG45oqefCBLKOODhuODvOODluODq-eZu-mMsilcbiDjgIBL44CALS0-44CAQ1xuXG7jgIAgIFxu44CAICIsIm1lcm1haWQiOnt9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBW-OBiuWuouanmF0gLS0-Qyjjg4jjg4Pjg5fjg5rjg7zjgrgv44Oh44OL44Ol44O85LiA6KanKVxuICAgIEMgLS0-IHzjg6Hjg4vjg6Xjg7zpgbjmip58IEQo44Oh44OL44Ol44O86Kmz57SwKVxuICAgIEQtLT585YCL5pWw6YG45oqefExb44Kr44O844OI5L-d5a2YXVxu44CA44CAIEzjgIAtLT7jgIBDXG5cbiAgICBDLS0-fOOCq-ODvOODiOihqOekunwgRijjgqvjg7zjg4jlhoXkuIDopqfooajnpLopXG7jgIAgIEYgLS0-fOWAi-aVsOabtOaWsC_liYrpmaR8IEdb44Kq44O844OA44O856K65a6aXVxuICAgIEfjgIAtLT7jgIBDXG5cbiAgICBDLS0-fOOCquODvOODgOODvOWxpeattHwgSCjjgqrjg7zjg4Djg7zkuIDopqfooajnpLopXG7jgIAgIEggLS0-IHzjgq_jg6zjgrjjg4Pjg4jjgqvjg7zjg4nmlK_miZXjgYR8IEko44Kr44O844OJ5oOF5aCx5YWl5YqbKVxu44CA44CASC0tPnzlupfpoK3mlK_miZXjgYR8IENcbiAgIEktLT5KW-axuua4iF1cbuOAgOOAgErjgIAtLT7jgIBDXG7jgIBcbuOAgOOAgEMgLS0-IHzjg4bjg7zjg5bjg6vpgbjmip4v5YaN6YG45oqefCBLKOODhuODvOODluODq-eZu-mMsilcbiDjgIBL44CALS0-44CAQ1xuXG7jgIAgIFxu44CAICIsIm1lcm1haWQiOnt9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ)
 
 # テーブル設計
 
@@ -107,3 +114,4 @@ Quick Order (仮)
 ### Association
 - has_many : orders
 - has_one :table
+
