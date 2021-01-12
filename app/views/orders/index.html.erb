@@ -4,7 +4,7 @@
   <div class="order-space">
   </div>
 <div class ="order-content" >
-  <table>
+  <table id="table">
    <thead>
       <tr>
         <th></th>
@@ -16,7 +16,7 @@
     </thead>
       <% @orderObject[:rows].each do |row|%>
         <tr >
-          <td > <%= check_box_tag "checked-boxes", true, false, {}%></td>
+          <td > <%= check_box_tag "checked-boxes",{}, false, {}%></td>
           <td><%= "#{row[:order][:table_id]}"%></td>
           <td> <%= row[:item][:name] %></td>
           <td><%= "#{row[:order][:quantity]}"%> </td>
