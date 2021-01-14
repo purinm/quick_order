@@ -1,7 +1,6 @@
 <%= render "devise/shared/header" %>
-<div id ="cart_form">
-<div class ="item-inner" >
 
+<div class ="item-inner" >
   <%if @sets.blank? %>
     <p>現在カートの中は空です</p>
     <%=link_to 'もどる', root_path %>
@@ -10,7 +9,6 @@
 <div class ="show-cart-inner" >
     <% @sets.each do |set| %>
     <div class="list">
-      
       <div>    
         <%= image_tag set[:item].image.variant(resize: '100x100'), class: "item-img"%>
       </div>
@@ -33,10 +31,10 @@
       </div>
     </div>
     <% end %>
-</div>
+
 
     <div class="item-form">
-      <h4><%=link_to "オーダー確定", orders_path %> </h4>
+      <h4><%=link_to "オーダー確定", orders_path ,method: :post%> </h4>
       <%=link_to 'もどる', root_path %>
     </div>
   <% end %>

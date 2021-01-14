@@ -5,6 +5,7 @@ class CreateOrders < ActiveRecord::Migration[6.0]
     t.references :item,      null: false                     
     t.integer	 :quantity,    null: false, default: 0           
     t.references :purchase,  null: true 
+    t.boolean  :reserved,    null: false, default: false   
     t.timestamps
     end
   end

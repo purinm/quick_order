@@ -1,4 +1,13 @@
  <%= render "devise/shared/header" %>
+
+  
+  <div class="order-space">
+    <p><%= link_to  "店頭支払い", items_path %></p>
+    <p><%= link_to  "クレジット支払い",  table_purchases_path(session[:table_id])%></p> 
+    <%=link_to 'もどる', root_path %>
+  </div>
+
+
  <%= form_with model:@purchase,url: table_purchases_path, local: true, id: 'charge-form' do |f| %>  
 
  <div>
@@ -36,5 +45,6 @@
       </div>
        <%= f.submit "支払い確定" ,class:"buy-red-btn" %>
     </div>
-    <%end%>
+    <% end %>
+  
     <%# /カード情報の入力 %>

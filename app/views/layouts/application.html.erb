@@ -10,16 +10,18 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
      <script type="text/javascript" src="https://js.pay.jp/v1/"></script>
       <!-- Bootstrap CSS -->
-   
+ <%
+=begin%>
  <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
       integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
       crossorigin="anonymous"
-    /> 
+    />  
+<%
+=end%>
 
-    
-
+  
  <%
 =begin%>
  <%= javascript_pack_tag 'hello_vue' %>
@@ -27,26 +29,12 @@
 <%
 =end%>
 
- 
     
-    <body class = "body">
-    
-      <%= yield %>
-     
-   </body>
-    
-    <footer>
-    <div class='footer'>
-  <div class='footer-contents'>
-      <ul class="footer-lists">
-        <li><%= link_to 'お問合せ', "#", class: "footer-link" %></li>
-        <li><%= link_to 'プライバシーポリシー', "#", class: "footer-link" %></li>
-        <li><%= link_to '利用規約', "#", class: "footer-link" %></li>
-      </ul>
-    </div>
-     <p> Copyright Quick Order 2020.</p>
- </div>
-   
-    </footer>  
   </body>
+    <%= yield %>
+  </body>
+    
+  <footer>
+  </footer>  
+  
 </html>

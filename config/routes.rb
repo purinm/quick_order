@@ -21,9 +21,18 @@ resources :items do
   end
 end
 
-resources :orders, only:[:index] 
+
+resources :orders, only:[:index,:create]
+  resources :orders do
+   collection do
+    patch :update
+  end
+end
+
 
 resources :tables do
+  #  resources :orders, only:[:index] do
+  #  end
    resources :carts, only:[:index,:new,:create] do
    end
     resources :purchases, only:[:index,:create] do

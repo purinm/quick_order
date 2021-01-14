@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 2020_12_16_024350) do
     t.bigint "item_id", null: false
     t.integer "quantity", default: 0, null: false
     t.bigint "purchase_id"
+    t.boolean "reserved", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["item_id"], name: "index_orders_on_item_id"

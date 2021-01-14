@@ -1,38 +1,63 @@
 <%= render "devise/shared/header" %>
-
-  <%if user_signed_in?%>
+<%if user_signed_in?%>
   <div class="order-space">
   </div>
-<div class ="order-content" >
-  <table id="table">
-   <thead>
-      <tr>
-        <th></th>
-        <th>テーブル番号</th>
-        <th>メニュー</th>
-        <th>個数</th>
-        <th>支払い</th>
-      </tr>
-    </thead>
-      <% @orderObject[:rows].each do |row|%>
-        <tr >
-          <td > <%= check_box_tag "checked-boxes",{}, false, {}%></td>
-          <td><%= "#{row[:order][:table_id]}"%></td>
-          <td> <%= row[:item][:name] %></td>
-          <td><%= "#{row[:order][:quantity]}"%> </td>
-          <td> 
-            <% if row[:order][:purchase_id] == nil %> 未 
-            <% else %> 済 
-            <% end %>
-          </td>
+  <div class ="order-content" >
+    <%= form_with url: orders_path, method: :patch, local:true do |f|%>
+    <table id="table">
+     <thead>
+        <tr>
+          <th></th>
+          <th>テーブル番号</th>
+          <th>メニュー</th>
+          <th>個数</th>
+          <th>支払い</th>
         </tr>
-      <%end %>   
-    </tbody>
-  </table>
-</div>
-<div class="order-space">
- <button>更新</button>
-</div>
+      </thead>
+      <tbody>
+        <%
+=begin%>
+ <%= f.collection_check_boxes :reserved, @orders ,:id, :id do |order|%>
+        <div>  <%= order.label { order.check_box } %></div>
+        <% end %> 
+<%
+=end%>
+        <% @orderObject[:rows].each do |row|%>
+          <tr>
+            <td >       
+              <%= f.collection_check_boxes :reserved, [row[:order]],:id, :id, include_hidden: false do |order|%>
+              <%= order.label { order.check_box } %>
+              <% end %>
+            </td>
+            <td><%= "#{row[:order][:table_id]}"%></td>
+            <td> <%= row[:item][:name] %></td>
+            <td><%= "#{row[:order][:quantity]}"%> </td>
+            <td> 
+              <% if row[:order][:purchase_id] == nil %> 未 
+              <% else %> 済 
+              <% end %>
+            </td>
+          </tr>
+        <% end %> 
+      </tbody>
+      <div class="order-btn-space">
+        <%= f.submit "更新" %>
+      </div>
+    </table>
+    <% end %>   
+  </div>
+  <div class ="reserved-content" >
+  <table id="table">
+    <thead>
+        <tr>
+          <th></th>
+          <th>テーブル番号</th>
+          <th>メニュー</th>
+          <th>個数</th>
+          <th>支払い</th>
+        </tr>
+  </div>
+
  
 <% else %>
   <div class ="order-content2" >
@@ -46,13 +71,13 @@
         </div>
       </div>
     <% end %>
-  <p class="order-space">合計
-  <span id ="total"><%=@orderObject[:total]%>円</span>
-  </p> 
-  <% if @orderObject[:total] == 0 %>
-    <p>注文履歴はありません</p>
-  <% end %>
-</div>
+    <p class="order-space">合計
+    <span id ="total"><%=@orderObject[:total]%>円</span>
+    </p> 
+    <% if @orderObject[:total] == 0 %>
+      <p>注文履歴はありません</p>
+    <% end %>
+  </div>
   
   <div class="order-space">
     <p><%= link_to  "店頭支払い", items_path %></p>
@@ -61,5 +86,3 @@
   </div>
 <% end %>
 </div>
-
-<%= render "devise/shared/footer" %>

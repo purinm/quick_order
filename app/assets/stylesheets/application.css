@@ -16,5 +16,33 @@
  * {
   box-sizing: border-box;
 }
+header{
+  color:#554942;
+}
+body {
+  overflow: scroll;
+  background-color: #FFF;
+  text-align: center;
+  color:#554942;  
+}
+.footer-contents {
+  display: flex;
+  justify-content: center;
+  height:150px;
+  padding: 3vh ;
+  color: #FFF;
+  background-color:#faedd5;
+  text-align: center;
+  line-height: 32px;
+  color:#554942;
+}
+.footer-lists > li{
+ list-style: none;
+}
+.copyright{
+  padding:3px 0;
+  margin:0 auto;
+}
+
 
   

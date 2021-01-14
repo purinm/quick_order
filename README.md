@@ -101,6 +101,7 @@ Quick Order (仮)
 | item            | references | null: false                     | 
 | quantity        | integer	   | null: false, default: 0         |   
 | purchase        | references | null: true                      |
+| reserved        | boolean    | null: false, default: false      |                |
                         
 ### Association
 - belongs_to :purchase 
