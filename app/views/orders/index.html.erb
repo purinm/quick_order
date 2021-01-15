@@ -15,16 +15,9 @@
         </tr>
       </thead>
       <tbody>
-        <%
-=begin%>
- <%= f.collection_check_boxes :reserved, @orders ,:id, :id do |order|%>
-        <div>  <%= order.label { order.check_box } %></div>
-        <% end %> 
-<%
-=end%>
-        <% @orderObject[:rows].each do |row|%>
+        <% @orderObject[:unchecked_rows].each do |row|%>
           <tr>
-            <td >       
+            <td>       
               <%= f.collection_check_boxes :reserved, [row[:order]],:id, :id, include_hidden: false do |order|%>
               <%= order.label { order.check_box } %>
               <% end %>
@@ -43,12 +36,12 @@
       <div class="order-btn-space">
         <%= f.submit "更新" %>
       </div>
-    </table>
-    <% end %>   
+    </table>   
   </div>
+
   <div class ="reserved-content" >
   <table id="table">
-    <thead>
+     <thead>
         <tr>
           <th></th>
           <th>テーブル番号</th>
@@ -56,6 +49,28 @@
           <th>個数</th>
           <th>支払い</th>
         </tr>
+      </thead>
+      <tbody>
+        <% @orderObject[:checked_rows].each do |row|%>
+          <tr>
+            <td>       
+              <%= f.collection_check_boxes :reserved, [row[:order]],:id, :id, include_hidden: false, checked: true do |order|%>
+              <%= order.label { order.check_box } %>
+              <% end %>
+            </td>
+            <td><%= "#{row[:order][:table_id]}"%></td>
+            <td> <%= row[:item][:name] %></td>
+            <td><%= "#{row[:order][:quantity]}"%> </td>
+            <td> 
+              <% if row[:order][:purchase_id] == nil %> 未 
+              <% else %> 済 
+              <% end %>
+            </td>
+          </tr>
+        <% end %> 
+      </tbody>
+    </table>
+    <% end %>
   </div>
 
  
@@ -78,6 +93,7 @@
       <p>注文履歴はありません</p>
     <% end %>
   </div>
+  
   
   <div class="order-space">
     <p><%= link_to  "店頭支払い", items_path %></p>

@@ -15,25 +15,30 @@ class OrdersController < ApplicationController
  end
 
   def index
-
     if user_signed_in?
        @orders = Order.all
        @orderObject = {
         total: 0,
-        rows: []
+        checked_rows: [],
+        unchecked_rows: []
        }
        @orders.each do |order|
         item = Item.find(order[:item_id])
-        @orderObject[:rows].push({
-          order: order,
-          item: item
-        })
-        @orderObject[:total]+=order[:quantity]*item[:cost]
-        
-        
+          if order.reserved == true
+            @orderObject[:checked_rows].push({
+              order: order,
+              item: item
+            })
+          elsif order.reserved == false
+            @orderObject[:unchecked_rows].push({
+              order: order,
+              item: item
+            })
+          end
+          @orderObject[:total]+=order[:quantity]*item[:cost]
+        end
       
-      end
-    else
+     else
       orders = Order.where(table_id:session[:table_id],purchase_id:nil)
       @orderObject = {
         total: 0,
@@ -55,11 +60,12 @@ class OrdersController < ApplicationController
   end
 
   def update
-     binding.pry
     params[:reserved].each do |r|
-      order = Order.find(r)
-      order.update(reserved:true)
+     Order.where(id:r).update_all(reserved:true)
     end
+    redirect_to orders_path
+
+
   end
 
 
