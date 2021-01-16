@@ -4,7 +4,7 @@
   </div>
   <div class ="order-content" >
     <%= form_with url: orders_path, method: :patch, local:true do |f|%>
-    <table id="table">
+    <table >
      <thead>
         <tr>
           <th></th>
@@ -16,12 +16,12 @@
       </thead>
       <tbody>
         <% @orderObject[:unchecked_rows].each do |row|%>
-          <tr>
+          <tr class="unchecked">
             <td>       
               <%= f.collection_check_boxes :reserved, [row[:order]],:id, :id, include_hidden: false do |order|%>
               <%= order.label { order.check_box } %>
               <% end %>
-            </td>
+            </td> 
             <td><%= "#{row[:order][:table_id]}"%></td>
             <td> <%= row[:item][:name] %></td>
             <td><%= "#{row[:order][:quantity]}"%> </td>
@@ -33,29 +33,32 @@
           </tr>
         <% end %> 
       </tbody>
-      <div class="order-btn-space">
+      <div id ="order-btn-space">
         <%= f.submit "更新" %>
       </div>
-    </table>   
+    </table> 
+   <% end %> 
   </div>
 
   <div class ="reserved-content" >
-  <table id="table">
-     <thead>
+  <p>提供済み</p>
+  <%= form_with url: orders_path, method: :patch, local:true do |f|%>
+  <table >
+    <thead>	     
         <tr>
-          <th></th>
-          <th>テーブル番号</th>
-          <th>メニュー</th>
-          <th>個数</th>
-          <th>支払い</th>
-        </tr>
+         <th></th>	        
+          <th>テーブル番号</th>	          
+          <th>メニュー</th>	       
+          <th>個数</th>	    
+          <th>支払い</th>	       
+        </tr>	      
       </thead>
-      <tbody>
+      <tbody >
         <% @orderObject[:checked_rows].each do |row|%>
-          <tr>
+          <tr clsss="checked">
             <td>       
-              <%= f.collection_check_boxes :reserved, [row[:order]],:id, :id, include_hidden: false, checked: true do |order|%>
-              <%= order.label { order.check_box } %>
+              <%= f.collection_check_boxes :reserved, [row[:order]],:id, :id, include_hidden: false do |order|%>
+              <%= order.label { order.check_box disabled:true } %>
               <% end %>
             </td>
             <td><%= "#{row[:order][:table_id]}"%></td>
@@ -70,10 +73,9 @@
         <% end %> 
       </tbody>
     </table>
-    <% end %>
-  </div>
+   <% end %> 
 
- 
+    
 <% else %>
   <div class ="order-content2" >
     <% @orderObject[:rows].each do |row|%> 
