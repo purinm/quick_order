@@ -2,16 +2,17 @@ class TablesController < ApplicationController
   # before_action :authenticate_user!
   before_action :clean_table, only:[:create]
 
- def index
+ def index  
   @tables = Table.all
+ 
  end
-
+ 
  def new
   # binding.pry
-  @tables = Table.all
+   @tables = Table.all
   if user_signed_in?
     if @tables.present?
-        render :index
+        redirect_to tables_path
     else
         render :create
     end

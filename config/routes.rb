@@ -22,7 +22,7 @@ resources :items do
 end
 
 
-resources :orders, only:[:index,:create]
+resources :orders, only:[:index,:create,:show]
   resources :orders do
    collection do
     patch :update
@@ -36,6 +36,9 @@ resources :tables do
    resources :carts, only:[:index,:new,:create] do
    end
     resources :purchases, only:[:index,:create] do
+      collection do
+        patch :update
+      end
    end
 end  
 

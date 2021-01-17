@@ -1,5 +1,5 @@
 .table_info{
-  padding: 8vh ;
+  padding: 8vh 8vh 0 8vh ;
   background-color: #FFF;
   line-height: 32px;
 }
@@ -9,7 +9,27 @@
 .show-cart-form{
   width:30vw;
   margin:0 auto;  
-  
+}
+
+.table_ids > ul{
+  display:flex;
+  justify-content: space-around;
+}
+
+
+
+.table_links{
+  padding: 0 0 8vh 0 ;
+}
+.table_purchase{
+  padding:8vh;
+  height:600px;
+  overflow:scroll;
+  display:flex;
+}
+.table_select{
+  text-align: center;
+  margin:0 auto;  
 }
 /* form{
   display: flex;

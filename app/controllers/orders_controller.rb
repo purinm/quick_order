@@ -64,10 +64,25 @@ class OrdersController < ApplicationController
      Order.where(id:r).update_all(reserved:true)
     end
     redirect_to orders_path
-
-
   end
 
+  def show
+    # binding.pry
+    orders = Order.where(table_id:params[:table][:id])   
+    @order = Order.find_by(table_id:params[:table][:id])   
+      @orderObject = {
+        total: 0,
+        rows: []
+      }
+      orders.each do |order|
+        item = Item.find(order[:item_id])
+        @orderObject[:rows].push({
+          order: order,
+          item: item
+        })
+        @orderObject[:total]+=order[:quantity]*item[:cost]
+      end
+  end
 
   def get_table_num
    @order = Order.find_by(table_id: session[:table_id])
@@ -75,8 +90,9 @@ class OrdersController < ApplicationController
 
   private
   def order_params
-    params.permit(:reserved)
+    params.require(:order).permit(:reserved)
   end
+  
 
 end
 

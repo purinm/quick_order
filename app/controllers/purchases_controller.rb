@@ -16,7 +16,7 @@ class PurchasesController < ApplicationController
       @purchase.save 
     
       #オーダーテーブルに支払い記録を反映 
-      @order_purhcases = Order.where(table_id:@purchase[:table_id])
+      @order_purhcases = Order.where(table_id:@purchase[:table_id],purchase_id:nil)
       @order_purhcases.each do |order_purchase|
         order_purchase.update(purchase_id:@purchase.id)
       end
@@ -24,6 +24,18 @@ class PurchasesController < ApplicationController
       redirect_to root_path
     else
       render 'index'
+    end
+  end
+
+  def update
+    binding.pry
+    purchase = Purchase.new
+    
+    @order_purhcases = Order.where(table_id:params[:table_id],purchase_id:nil)
+    @order_purhcases.each do |order_purchase|
+      purchase = Purchase.create(table_id:order_purchase.table_id,total_cost:params[:total_cost])
+      purchase.save
+        order_purchase.update(purchase_id:@purchase.id)
     end
   end
 

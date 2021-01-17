@@ -1,25 +1,30 @@
 <%= render "devise/shared/header" %>
-<div class="table_info">
-<p>使用中のテーブル</p>
-<% if @tables.present? %>
- <% @tables.each do |table|%>
- <p><%= table.id %></p>
-    <%
-=begin%>
- <%if table.using == true %>
-        <%= link_to "使用中","#", method: :put %> 
-    <% else %>
-        <%= link_to "未使用", "#" %> 
-    <% end %> 
-<%
-=end%>
-  <% end %>
-  <%=link_to 'テーブル再登録',tables_path, method: :post%>
+<% if @tables.blank? %>
+    <div class="table_info">
+        <p>現在登録中のテーブルはありません。</p>
+        <div class="table_links">
+         <p><%=link_to 'テーブル再登録',tables_path, method: :post%></p>
+         <%=link_to 'もどる', items_path %>
+       </div>
+    </div>
 <% else %>
-    <p>現在登録中のテーブルはありません。</p>
+    <div class="table_ids">
+        使用中のテーブル
+        <ul>
+          <% @tables.each do |table|%>
+           <li><%= table.id %></li>
+          <%end%>
+        </ul>
+        <div>
+        <%=form_with model: @tables,url: order_path(@tables.ids),local: true, method: :get do |f| %>
+        会計するテーブル
+        <%= f.collection_select(:id, @tables,:id,:id,{selected: 1}, {class: 'form-control' , required: true }) %>
+    
+        <p><%= f.submit "会計へ" %></p>
+        </div>
+       <% end %>
+    </div>
 <% end %>
-<%=link_to 'もどる', items_path %>
-</div>
 <%= render "devise/shared/footer" %>
 
 
