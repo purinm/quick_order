@@ -1,7 +1,9 @@
 class PurchasesController < ApplicationController
-  before_action :get_total_cost, only: [:index,:create]
+  before_action :get_total_cost, only: [:index,:create,:update]
+  before_action :purchase_new, only: [:index,:update]
+  
   def index
-      @purchase = Purchase.new
+     
   end
 
   def create
@@ -28,21 +30,23 @@ class PurchasesController < ApplicationController
   end
 
   def update
-    binding.pry
-    purchase = Purchase.new
-    
-    @order_purhcases = Order.where(table_id:params[:table_id],purchase_id:nil)
-    @order_purhcases.each do |order_purchase|
-      purchase = Purchase.create(table_id:order_purchase.table_id,total_cost:params[:total_cost])
-      purchase.save
-        order_purchase.update(purchase_id:@purchase.id)
+    purchase = Purchase.create(table_id:params[:table_id],total_cost:params[:total_cost])
+
+    params[:order_id].split(' ').map{|n| n.to_i}.each do |params_order|
+    Order.where(id:params_order,purchase_id:nil).update_all(purchase_id:purchase.id)
     end
+  
   end
 
   private
   def purchase_params
     params.require(:purchase).permit(:total_cost).merge(table_id:params[:table_id],token: params[:token])
   end
+  
+  def purchase_new
+    @purchase = Purchase.new
+  end
+ 
 
   def get_total_cost
     orders = Order.where(table_id:session[:table_id])

@@ -5,16 +5,19 @@
     <div class ="order-list2" >
         <div class ="order-name" >
               <p><%= row[:item][:name] %></p> 
+              <p><%= row[:order][:id] %></p> 
         </div>
         <div class ="order-hoka" >      
               <p><%= row[:item][:cost] %>円 <span><%= row[:order][:quantity]%>個</span> </p> 
         </div>
       </div>
     <% end %>
-  <%= form_with  url: table_purchases_path(@order.table_id), method: :patch, local:true do |f|%>
+  <%= form_with url: table_purchases_path(@orderObject[:order_table_id]), method: :patch, local:true do |f|%>
     <p class="order-space">
-    <%= f.label :合計 %><br />
-    <span id ="total"><%=f.number_field :total_cost , value:@orderObject[:total],readonly:true %>円</span>
+    
+    <p><%=f.hidden_field :order_id,value: @orders.ids%></p> 
+    <%= f.label :total_cost,"合計" %><br />
+    <%=f.number_field :total_cost , value:@orderObject[:total],readonly:true %>円
     </p> 
   </div>
   <div>

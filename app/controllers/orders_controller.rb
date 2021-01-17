@@ -2,7 +2,6 @@ class OrdersController < ApplicationController
  before_action :get_table_num
 
  def create
-    # binding.pry
    #カート情報をオーダーテーブルにコピー
    ActiveRecord::Base.connection.execute('insert ignore into orders (item_id, table_id,quantity) select item_id, table_id,quantity from carts')
    #カート内を空に
@@ -68,13 +67,14 @@ class OrdersController < ApplicationController
 
   def show
     # binding.pry
-    orders = Order.where(table_id:params[:table][:id])   
-    @order = Order.find_by(table_id:params[:table][:id])   
+    @orders = Order.where(table_id:params[:table][:id],purchase_id:nil)    
+      
       @orderObject = {
         total: 0,
-        rows: []
+        rows: [],
+        order_table_id:params[:table][:id]
       }
-      orders.each do |order|
+      @orders.each do |order|
         item = Item.find(order[:item_id])
         @orderObject[:rows].push({
           order: order,
