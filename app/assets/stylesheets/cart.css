@@ -16,11 +16,10 @@ width: 100vw;
   display: flex;
   justify-content: space-between;
 }
-.show-cart-form{
-  
-  padding:4vh 0;
-  width:150;
-  
-  
+
+.show-cart-form>form{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 }
 

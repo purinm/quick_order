@@ -1,13 +1,10 @@
 .table_info{
-  padding: 8vh 8vh 0 8vh ;
+  padding: 8vh ;
   background-color: #FFF;
   line-height: 32px;
 }
-.table_info>.p:last-child{
-  margin :0 0 0 3vh;
-}
 .show-cart-form{
-  width:30vw;
+  width:120px;
   margin:0 auto;  
 }
 
@@ -15,8 +12,6 @@
   display:flex;
   justify-content: space-around;
 }
-
-
 
 .table_links{
   padding: 0 0 8vh 0 ;
@@ -31,14 +26,35 @@
   text-align: center;
   margin:0 auto;  
 }
-/* form{
-  display: flex;
-  text-align: center;
+.table-create-form{
+  width:270px;
+  margin:0 auto;  
+}
+.table-create-form > form{
+  display:flex;
+  justify-content: space-around;
+}
+.table_ids {
+  width:300px;
+  margin:0 auto;
+}
+.table_purchase_input{
+  width:300px;
+  padding: 8vh 0 12vh 0 ; 
+  margin:0 auto;
+  line-height: 36px;
+}
+.table_purchase_input > form{
+  display:flex;
   justify-content: center;
-}
-form > p{
-  padding-left:4vw ;
-}
-select::-webkit-search-results-button{
+  align-items: center;
+  }
+  .input-space{
+    margin-left: 15px;
+  }
+  #total_cost{
+  border-style: hidden;
+  text-align: right;
+  width:120px;
+  }
 
-} */

@@ -6,8 +6,7 @@
 =end%>
 <%
 =begin%>
- <%= javascript_pack_tag 'hello_vue' %>
-    <%= stylesheet_pack_tag 'hello_vue' %> 
+ 
 <%
 =end%>
 <h2 >メニュー編集</h2>
@@ -37,7 +36,7 @@
     <div>商品の詳細</div>
       <div>
         <div>カテゴリー<span >必須</span></div>
-        <%= f.collection_select(:genre_id, Genre.all, :id, :name, {}) %>
+        <%= f.collection_select(:genre_id, Genre.all, :id, :name, {},{class: "form-control input-sm"}) %>
     <div> 
     <div>
       <div>価格<span>必須</span></div>
@@ -45,7 +44,7 @@
       <%= f.text_field :cost, placeholder:"500" %>
     </div>
     <div>
-      <%= f.submit "編集完了" %>
+      <%= f.submit "編集完了" ,{class:"btn btn-outline-secondary"}%>
       <%=link_to 'もどる', items_path %>
     </div>
    

@@ -34,7 +34,7 @@
         <% end %> 
       </tbody>
       <div id ="order-btn-space">
-        <%= f.submit "更新" %>
+        <%= f.submit "更新",{class:"btn btn-outline-secondary"} %>
       </div>
     </table> 
    <% end %> 
@@ -95,14 +95,16 @@
       <p>注文履歴はありません</p>
     <% end %>
   </div>
-  
-  
+
   <div class="order-space">
     <p><%= link_to  "店頭支払い", items_path %></p>
     <p><%= link_to  "クレジット支払い",  table_purchases_path(session[:table_id])%></p> 
     <%=link_to 'もどる', root_path %>
   </div>
 <% end %>
+</div>
+<div class="table_links">
+  <%=link_to 'もどる', items_path %>
 </div>
 <%= render "devise/shared/footer" %>
 

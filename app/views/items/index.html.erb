@@ -1,10 +1,12 @@
 <%= render "devise/shared/header" %>
 <div class="item-form">
  <h3>Menu</h3> 
+ <div class="search-form">
  <%= form_with(url: items_path, local: true, method: :get) do |form| %>
-    <%=select_tag "keyword",options_from_collection_for_select(Genre.all, "id", "name", "1")%>
-    <%= form.submit "検索", class: "search-btn" %>
+    <p><%=select_tag "keyword" ,options_from_collection_for_select(Genre.all, "id", "name", "1"),{:style => 'width: 150px',class: 'form-control select_css_tag'}%>
+    <p><%= form.submit "検索", {class:"btn btn-outline-secondary"} %></p>
   <% end %> 
+  </div >
 </div >
 <div class ="item-content" >
    <ul class ="item-inner">

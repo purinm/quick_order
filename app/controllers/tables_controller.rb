@@ -4,11 +4,9 @@ class TablesController < ApplicationController
 
  def index  
   @tables = Table.all
- 
  end
  
  def new
-  # binding.pry
    @tables = Table.all
   if user_signed_in?
     if @tables.present?

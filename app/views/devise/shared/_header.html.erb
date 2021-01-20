@@ -1,36 +1,89 @@
 <header>
-      <div class='title-contents'>
-        <h1><a href="/">Quick Order </a></h1>
-        <% if user_signed_in? %>
-        <p><%="こんにちは、#{current_user.name}さん"%></p>
-         <div>
-           <%
+  
+
+ <%
 =begin%>
- <%= link_to "アカウント編集", edit_user_registration_path %> 
+ <div class="alert alert-info text-center mb-0 rounded-0 alert-dismissile fade show" role="alert">
+        News! News! News! News! News!
+  <button class="close" data-dismiss="alert">&times;</button>
+</div>  
 <%
 =end%>
-         </div>
-          <div >
-           <p>  <%= link_to '新規メニュー', new_item_path %></p>
-           <p>   <%= link_to 'テーブル管理',  new_table_path %></p>
-            <p>  <%= link_to "オーダー管理",orders_path %></p>
-            
-            <p>  <%= link_to "Log out", destroy_user_session_path, method: :delete %></p>
-           </div> 
-        <% else%>
-            <% unless user_signed_in? %>
-              <p>こんにちは、ゲストさん 
-              <% if session[:table_id].present? %> </p>
-                  <p>選択中のテーブルは　<%= session[:table_id] %></p>
-                  <p> <%= link_to "カートを見る", table_carts_path(session[:table_id])%> </p>
-                  <p><%= link_to "オーダー履歴を見る", orders_path%> </p>
-                  
-                   <p><%= link_to "テーブル再選択", new_table_path%> </p>
-                <% else %>
-                  <p><%= link_to "テーブル選択",  new_table_path%></p>
-                <% end %> 
-              <% end %>   
-          <% end %>
+
+<% if user_signed_in? %>
+<section>
+  <div class="navtop">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="">home</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li><%= link_to("新規メニュー", new_item_path, {class: "nav-link"}) %></li>
+          <li><%= link_to("テーブル管理", new_table_path, {class: "nav-link"}) %></li>
+          <li><%= link_to("オーダー管理", orders_path, {class: "nav-link"}) %></li>
+          <li><%= link_to("ログアウト", destroy_user_session_path, {method: :delete, class: "nav-link"}) %></li>
+        </ul>
       </div>
+    </nav>
+  </div>
+</section>
+<% else%>
+</section>
+  <div class="navtop">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="">home</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    <% if session[:table_id].present? %> 
+      <div class="collapse navbar-collapse" id="navbarNav">
+       <ul class="navbar-nav">
+          <li><%= link_to("カートを見る", table_carts_path(session[:table_id]), {class: "nav-link"}) %></li>
+          <li><%= link_to("オーダー履歴を見る", orders_path, {class: "nav-link"}) %></li>
+          <li><%= link_to("テーブル再選択", new_table_path, {class: "nav-link"}) %></li>
+         </ul>
+    <% else %>
+         <ul class="navbar-nav">
+          <li><%= link_to("テーブル選択", new_table_path, {class: "nav-link"}) %></li>
+       </ul>
+    <% end %> 
+       </div>
+    </nav>
+  </div>
+  </section>
+<% end %> 
+
+<div class='title-contents'>
+  <h1><a href="/">Quick Order </a></h1>
+  <% if user_signed_in? %>
+    <p><%="こんにちは、#{current_user.name}さん"%></p>
+   
+  <% else%>
+      <% unless user_signed_in? %>
+        <p>こんにちは、ゲストさん  <p>
+         <% if session[:table_id].present? %> 
+          <p>選択中のテーブルは&emsp;<%= session[:table_id] %></p>
+        <% end %>   
+      <% end %>   
+ <% end %>
+</div>
 
 </header>

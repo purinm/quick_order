@@ -2,10 +2,10 @@
 <div class="table_info">
   <p>現在登録中のテーブルはありません</p>
   <p>テーブルの数を選択してください <span >(必須)</span> </p>
-  <div class="show-cart-form"> 
+  <div class="table-create-form"> 
    <%=form_with  url: tables_path, local: true do |f| %> 
-     <p> <%= f.collection_select(:table_quantity_id, TableQuantity.all, :id, :id, {}) %></p>
-    <p><%= f.submit "登録する" %></p>
+     <p> <%= f.collection_select(:table_quantity_id, TableQuantity.all, :id, :id, {},{:style => 'width: 150px',class: 'form-control select_css_tag'}) %></p>
+    <p><%= f.submit "登録する" ,{class:"btn btn-outline-secondary"}%></p>
   <%end%>
  </div>
     

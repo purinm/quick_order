@@ -36,7 +36,7 @@
   <div>商品の詳細</div>
       <div>
         <div>カテゴリー<span >必須</span></div>
-        <%= f.collection_select(:genre_id, Genre.all, :id, :name, {}) %>
+        <%= f.collection_select(:genre_id, Genre.all, :id, :name, {},{class: "form-control input-sm"}) %>
      <div> 
 
      <div>
@@ -47,7 +47,7 @@
 
 
      <div>
-      <%= f.submit "出品する" %>
+      <%= f.submit "出品する",{class:"btn btn-outline-secondary"} %>
       <%=link_to 'もどる', items_path %>
     </div>
    

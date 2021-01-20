@@ -9,6 +9,10 @@ require("@rails/activestorage").start()
 require("channels")
 require("../card")
 require("../checked")
+// require("./header_vue")
+
+//= require jquery
+//= require bootstrap-sprockets
 
 
 

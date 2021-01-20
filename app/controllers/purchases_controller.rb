@@ -35,7 +35,7 @@ class PurchasesController < ApplicationController
     params[:order_id].split(' ').map{|n| n.to_i}.each do |params_order|
     Order.where(id:params_order,purchase_id:nil).update_all(purchase_id:purchase.id)
     end
-  
+   redirect_to orders_path
   end
 
   private

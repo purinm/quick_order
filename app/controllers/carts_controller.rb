@@ -23,7 +23,6 @@ class CartsController < ApplicationController
 
   # カートへ を押した時のアクション
    def add_item
-    # binding.pry
     @carts = Cart.find_by(table_id: session[:table_id], item_id:params[:id]) #同じカートアイテムがないか探しておく
     if @carts.present? 
       @carts[:quantity]+= params[:quantity].to_i 
@@ -31,7 +30,7 @@ class CartsController < ApplicationController
     else
       @carts = Cart.create(table_id:session[:table_id], item_id:params[:id],quantity:params[:quantity])
     end
-     redirect_to items_path
+     redirect_to table_carts_path(session[:table_id])
    end
 
   # カート詳細画面から、「更新」を押した時のアクション

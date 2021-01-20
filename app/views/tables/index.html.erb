@@ -1,30 +1,32 @@
 <%= render "devise/shared/header" %>
 <% if @tables.blank? %>
-    <div class="table_info">
+    <div class = 'table_info2'>
         <p>現在登録中のテーブルはありません。</p>
-        <div class="table_links">
-         <p><%=link_to 'テーブル再登録',tables_path, method: :post%></p>
-         <%=link_to 'もどる', items_path %>
-       </div>
     </div>
 <% else %>
+<div class="table_info">
+    使用中のテーブル
     <div class="table_ids">
-        使用中のテーブル
         <ul>
           <% @tables.each do |table|%>
            <li><%= table.id %></li>
           <%end%>
         </ul>
-        <div>
-        <%=form_with model: @tables,url: order_path(@tables.ids),local: true, method: :get do |f| %>
-        会計するテーブル
-        <%= f.collection_select(:id, @tables,:id,:id,{selected: 1}, {class: 'form-control' , required: true }) %>
-    
-        <p><%= f.submit "会計へ" %></p>
-        </div>
-       <% end %>
     </div>
+  </div>
+  <div class="table_purchase_input">
+      会計するテーブル
+      <%=form_with model: @tables,url: order_path(@tables.ids),local: true, method: :get do |f| %>
+      <p><%= f.collection_select(:id, @tables,:id,:id,{selected: 1}, {class: 'form-control' , required: true ,:size=>'width: 10px'}) %></p>
+  
+      <p class="input-space"><%= f.submit "会計へ" ,{class:"btn btn-outline-secondary"}%></p>
+      <% end %>
+  </div>
 <% end %>
+<div class="table_links">
+  <p><%=link_to 'テーブル再登録',tables_path, method: :post%></p>
+  <%=link_to 'もどる', items_path %>
+</div>
 <%= render "devise/shared/footer" %>
 
 
