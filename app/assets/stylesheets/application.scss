@@ -18,16 +18,9 @@
   box-sizing: border-box;
 }
 
-body {
-  overflow: scroll;
-  text-align: center;
-}
-
-
 .footer-contents {
   display: flex;
   height:150px;
-  // padding: 3vh ;
   color: #FFF;
   background-color:#faedd5;
   text-align: center;
@@ -42,15 +35,17 @@ body {
   justify-content: space-around;
   align-items: center;
 }
-
-
 .footer-lists > li{
- list-style: none;
- 
+  list-style: none;
+  
 }
 .copyright{
   padding:3px 0;
   margin:0 auto;
+}
+body {
+  overflow: scroll;
+  text-align: center;
 }
 
 .navtop{

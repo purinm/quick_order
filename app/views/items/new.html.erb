@@ -1,61 +1,46 @@
 <%= render "devise/shared/header" %>
-<body>
-<h2 >新メニュー登録</h2>
-    <%= form_with model:@item, url: items_path, local: true do |f| %>
-    <div >
-      <div> 画像</div>
-      <div >
-        <p>クリックしてファイルをアップロード</p>
-        <%
-=begin%>
- <% @message.images.each do |image| %>
-        <%= image_tag image, class: 'images' %>
-        <% end %> 
-<%
-=end%>
-        <%= f.file_field :image %>
-        <span >必須</span>
-      </div>
-
-      </div>
-      <div > メニュー名 </div>
-      <%= f.text_area :name, placeholder:"半熟あつあつのたこやき", maxlength:"40" %>
-       <span >必須 40文字まで</span>
-      <div >
-  
-      <div >
-        ひとこと紹介
-      </div>
-      <%= f.text_area :description, placeholder:"明石産の歯応えのあるたこを使用したたこ焼きです。" ,rows:"3" ,maxlength:"80" %>
-      <span > 80文字まで</span>
+<div class = "new_item_container">
+ <h3>新メニュー登録</h3>
+  <%= form_with model:@item, url: items_path, local: true do |f| %>
+    <div class= "group">
+          <%= f.label :image, "画像" ,{class:"form_label"} %>
+          <div class= "form_cont"> 
+              <%= f.file_field :image ,required: true%>
+          </div>
     </div>
-
-  </div>
-
-
-  <div>商品の詳細</div>
-      <div>
-        <div>カテゴリー<span >必須</span></div>
-        <%= f.collection_select(:genre_id, Genre.all, :id, :name, {},{class: "form-control input-sm"}) %>
-     <div> 
-
-     <div>
-      <div>価格<span>必須</span></div>
-      <span>¥</span>
-      <%= f.text_field :cost, placeholder:"500" %>
+    <div class = "group">
+         <%= f.label :name, "メニュー名" ,{class:"form_label",required: true} %>
+        <div class= "form_cont">
+            <%= f.text_area :name, placeholder:"半熟あつあつのたこやき", maxlength:"30", rows:"1",class:"form-control" %>
+            <p> 20文字まで</p>
+          </div>
     </div>
-
-
-     <div>
-      <%= f.submit "出品する",{class:"btn btn-outline-secondary"} %>
-      <%=link_to 'もどる', items_path %>
+    <div class = "group">
+         <p> ひとこと紹介</p>
+          <div class= "form_cont">
+            <%= f.text_area :description, placeholder:"明石産の歯応えのあるたこを使用しました。",rows:"5" ,maxlength:"80",class:"form-control" %>
+            <p> 80文字まで</p>
+          </div>
     </div>
-   
-  </div>
-
- 
+    <div class = "group">
+         <%= f.label :genre_id, "カテゴリー" ,{class:"form_label"} %>
+          <div class= "form_cont">
+            <%= f.collection_select(:genre_id, Genre.all, :id, :name, {},{class: "form-control input-sm"}) %>
+          </div> 
+    </div> 
+    <div class = "group">
+        <%= f.label :cost, "価格" ,{class:"form_label"} %>
+        <div class= "form_small_cont">
+            <%= f.text_field :cost, placeholder:"500",class:"form-control" ,required: true%>&emsp;<span>円</span>
+        </div>
+     </div>
+  <%= f.submit "出品する",{class:"btn btn-outline-secondary"} %>
   <% end %>
+</div>
 
+<div class= "table_links">
+    <%=link_to 'もどる', items_path %>
+</div>
 
-  </body>
-  <%= render "devise/shared/footer" %>
+ <%= render "devise/shared/footer" %>
+
