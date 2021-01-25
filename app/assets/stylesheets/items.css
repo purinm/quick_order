@@ -126,7 +126,7 @@ margin-bottom:0;
   display:flex;
   width:150px !important;;
 }
-.form-control::placeholder{
+.cost.form-control::placeholder{
   text-align:right;
 }
 #item_image{
