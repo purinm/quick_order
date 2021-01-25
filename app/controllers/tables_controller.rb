@@ -21,9 +21,6 @@ class TablesController < ApplicationController
     end
   end
 
- 
-
-
 #  def update
 #    @tables = Table.all
 #   table = Table.find_by(params[:id])

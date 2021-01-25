@@ -132,4 +132,12 @@ margin-bottom:0;
 #item_image{
   float: right;
 }
+.ItemIcons{
+ text-align:right;
+ padding-right: 15px;
+}
+.ItemIcons a:hover{
+  text-decoration: none;
+}
+
 
