@@ -6,16 +6,22 @@ class TablesController < ApplicationController
   @tables = Table.all
  end
  
+ 
  def new
    @tables = Table.all
-  if user_signed_in?
-    if @tables.present?
-        redirect_to tables_path
-    else
-        render :create
+   unless user_signed_in?
+      render new_table_path
+   else
+
+      if @tables.present?
+          redirect_to tables_path
+      else
+          render :create
+      end
     end
   end
-end
+
+ 
 
 
 #  def update

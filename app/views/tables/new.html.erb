@@ -1,16 +1,18 @@
 <%= render "devise/shared/header" %>
-<% if user_signed_in?%>
     <div  class="table_info">
-      <p>使用するテーブルを選択してください <span>（必須）</span> </p>
-      <div class="show-cart-form">   
-        <%=form_with model:@tables, url: table_carts_path(@tables.ids),local: true do |f| %>
-          <p> <%= f.collection_select(:id, @tables, :id, :id,{},class: "form-control input-sm")%></p>
-          <p><%= f.submit "決定",{class:"btn btn-outline-secondary"} %></p>
-        <%end%>
-      </div>
-    </div>
-<% else %>
-   <div  class="table_info">テーブル準備中</div>
-<% end %>
+      <% if @tables.present? %>
+        <p>使用するテーブルを選択してください <span>（必須）</span> </p>
+        <div class="show-cart-form">   
+          <%=form_with model:@tables, url: table_carts_path(@tables.ids),local: true do |f| %>
+            <p> <%= f.collection_select(:id, @tables, :id, :id,{},class: "form-control input-sm")%></p>
+            <p><%= f.submit "決定",{class:"btn btn-outline-secondary"} %></p>
+          <% end %>
+        </div>
+     
+      <% elsif @tables.empty? %>    
+       <div  class="table_info">テーブル準備中</div>
+     <% end %>
+  </div>
 <%=link_to 'もどる', items_path %>
-<%= render "devise/shared/footer" %>
+
+ <%= render "devise/shared/footer" %> 
