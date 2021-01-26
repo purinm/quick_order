@@ -97,15 +97,14 @@
     <% end %>
   </div>
 
-  <div class="order-space">
-    <p><%= link_to  "店頭支払い", items_path %></p>
-    <p><%= link_to  "クレジット支払い",  table_purchases_path(session[:table_id])%></p> 
-    <%=link_to 'もどる', root_path %>
+  <div class="order-links">
+    <p><%= link_to  "クレジット支払いへ",  table_purchases_path(session[:table_id])%></p> 
   </div>
 <% end %>
 </div>
 <div class="table_links">
-  <%=link_to 'もどる', items_path %>
+店頭支払い希望の方は
+  <%=link_to "もどる", items_path %>
 </div>
 <%= render "devise/shared/footer" %>
 

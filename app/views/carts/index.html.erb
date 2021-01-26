@@ -10,7 +10,7 @@
     <% @sets.each do |set| %>
     <div class="list">
       <div>    
-        <%= image_tag set[:item].image.variant(resize: '100x100'), class: "item-img-content"%>
+        <%= image_tag set[:item].image.variant(resize: '200x200'), class: "item-img"%>
       </div>
       <div class="item-info">
         <p><%= set[:item][:name] %></p>
@@ -24,7 +24,7 @@
       <div class="show-cart-form">
         <%= form_with url: carts_update_item_item_path(set[:item][:id]), local: true do |f| %>
           <%= f.label :quantity, '個数' %>
-          <%= f.select("quantity", [1,2,3,4,5]),{:style => 'width: 10px',class: 'form-control select_css_tag'}%>
+          <%= f.select("quantity", [1,2,3,4,5], class:'form-select form-select-sm')%>
           <%= button_tag :type => "submit", :class =>"btn btn-default btn-s-md" do %>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
               <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>

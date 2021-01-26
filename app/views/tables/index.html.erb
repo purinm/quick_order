@@ -17,9 +17,9 @@
   <div class="table_purchase_input">
       会計するテーブル
       <%=form_with model: @tables,url: order_path(@tables.ids),local: true, method: :get do |f| %>
-      <p><%= f.collection_select(:id, @tables,:id,:id,{selected: 1}, {class: 'form-control' , required: true ,:size=>'width: 10px'}) %></p>
+      <p><%= f.collection_select(:id, @tables,:id,:id,{selected: 1}, {:style => 'width: 80px',class: 'form-control', required: true }) %></p>
   
-      <p class="input-space"><%= f.submit "会計へ" ,{class:"btn btn-outline-secondary"}%></p>
+      <p><%= f.submit "会計へ" ,{class:"btn btn-outline-secondary"}%></p>
       <% end %>
   </div>
 <% end %>

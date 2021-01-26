@@ -4,15 +4,15 @@
         <p>使用するテーブルを選択してください <span>（必須）</span> </p>
         <div class="show-cart-form">   
           <%=form_with model:@tables, url: table_carts_path(@tables.ids),local: true do |f| %>
-            <p> <%= f.collection_select(:id, @tables, :id, :id,{},class: "form-control input-sm")%></p>
-            <p><%= f.submit "決定",{class:"btn btn-outline-secondary"} %></p>
+            <div > <%= f.collection_select(:id, @tables, :id, :id,{},class: "form-control input-sm")%></div>
+            <div class="input-space"><%= f.submit "決定",{class:"btn btn-outline-secondary"} %></div>
           <% end %>
         </div>
-     
       <% elsif @tables.empty? %>    
        <div  class="table_info">テーブル準備中</div>
      <% end %>
   </div>
-<%=link_to 'もどる', items_path %>
-
- <%= render "devise/shared/footer" %> 
+<div class="table_links">
+  <%=link_to 'もどる', items_path %>
+</div>
+<%= render "devise/shared/footer" %> 

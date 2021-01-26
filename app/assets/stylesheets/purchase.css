@@ -1,0 +1,43 @@
+.exp-group{
+  display: flex;
+  justify-content: space-between;
+}
+.exp-group p{
+  text-align:left;
+  align-items: center;
+  font-size:16px;
+  columns: #333333;;
+  margin:0;
+  font-weight: bold;
+}   
+.exp{
+  display:flex;
+  align-items: center;
+}
+.exp-set{
+  display:flex;
+  width:200px;
+  justify-content: space-around;
+}
+.exp-space{
+  padding:0 8px 0 0 ;
+}
+.title{ 
+  padding:60px 0 0 0 !important; 
+  text-align: left;
+}
+.cost-group{
+  display:flex;
+  margin:24px 0;
+  overflow:hidden;
+  justify-content: space-between;
+  line-height: 40px;
+}
+.form-control.cost{
+ margin:0 10px 0 0;
+ text-align: right;
+ padding:0;
+}
+#card-number #card-cvc::placeholder{
+  text-align: left;
+}

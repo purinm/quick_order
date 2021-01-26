@@ -59,10 +59,12 @@ class OrdersController < ApplicationController
   end
 
   def update
-    params[:reserved].each do |r|
-     Order.where(id:r).update_all(reserved:true)
-    end
-    redirect_to orders_path
+    unless params[:reserved].blank?
+      params[:reserved].each do |r|
+      Order.where(id:r).update_all(reserved:true)
+      end
+      redirect_to orders_path
+   end
   end
 
   def show

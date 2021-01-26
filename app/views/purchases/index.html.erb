@@ -1,50 +1,38 @@
  <%= render "devise/shared/header" %>
-
-  
-  <div class="order-space">
-    <p><%= link_to  "店頭支払い", items_path %></p>
-    <p><%= link_to  "クレジット支払い",  table_purchases_path(session[:table_id])%></p> 
-    <%=link_to 'もどる', root_path %>
-  </div>
-
-
- <%= form_with model:@purchase,url: table_purchases_path, local: true, id: 'charge-form' do |f| %>  
-
- <div>
-  <%= f.label :total_cost %><br />
-  <p>合計金額<%=f.number_field :total_cost, value:@orderObject[:total],readonly:true	%> 円 </p> 
-  </div>
-    <%# カード情報の入力 %>
-    <div>
-      <p>クレジットカード情報入力 </p>
-      <div >
-        <div>
-          <label >カード番号</label>
-          <span >必須</span>
-        </div>
-        <%= f.text_field :number, class:"input-default", id:"card-number", placeholder:"カード番号(半角英数字)", maxlength:"16" %>
-      </div>
-      <div >
-        <div>
-          <label >有効期限</label>
-          <span >必須</span>
-        </div>
-        <div >
-          <%= f.select :exp_month, 1..12, {include_blank: "---"}, id:"card-exp-month",class: "exp_month" %>
-          <p>月</p>
-          <%= f.select :exp_year, 20..29, {include_blank: "---"}, id:"card-exp-year",class: "exp_year" %>
-          <p>年</p>
-        </div>
-      </div>
-      <div >
-        <div >
-          <label >セキュリティコード</label>
-          <span >必須</span>
-        </div>
-        <%= f.text_field :cvc, class:"input-default", id:"card-cvc", placeholder:"カード背面4桁もしくは3桁の番号", maxlength:"4" %>
-      </div>
-       <%= f.submit "支払い確定",{class:"btn btn-outline-secondary"} %>
+<div class = "new_item_container">
+  <%= form_with model:@purchase,url: table_purchases_path, local: true, id: 'charge-form' do |f| %>  
+  <div class= "cost-group">
+    <%= f.label :total_cost,"支払い合計" %>
+    <div class= "form_small_cont ">
+      <%=f.number_field :total_cost, class:"cost form-control", value:@orderObject[:total],readonly:true	%> <span>円</span> </p> 
     </div>
-    <% end %>
-  
-    <%# /カード情報の入力 %>
+  </div>
+  <h3 class="title">クレジットカード情報入力 </h3>
+  <div class= "group">
+      <%= f.label :number, "カード番号" ,{class:"form_label",required: true} %>
+      <%= f.text_field :number, class:"form-control", id:"card-number", placeholder:"カード番号(半角英数字)", maxlength:"16" %>
+  </div>
+  <div class= "exp-group">
+  <p>有効期限</p>
+    <div class= "exp-set">
+      <div class= "exp">
+        <div class="exp-space"><%= f.label :exp_month, "月" ,{class:"form_label ",required: true} %></div>
+        <div><%= f.select :exp_month, 1..12, {include_blank: "---"}, id:"card-exp-month",class: "exp_month form-control" %></div>
+      </div>
+      <div class= "exp">
+        <div class="exp-space"><%= f.label :exp_year, "年" ,{class:"form_label ",required: true} %></div>
+        <div><%= f.select :exp_year, 20..29, {include_blank: "---"}, id:"card-exp-year",class: "exp_year form-control" %></div>
+      </div>
+    </div>
+  </div>
+  <div class= "group">
+      <%= f.label :cvc, "セキュリティコード" ,{class:"form_label",required: true} %>
+      <%= f.text_field :cvc, class:"form-control", id:"card-cvc", placeholder:"カード背面4桁もしくは3桁の番号", maxlength:"4" %>
+  </div>
+     <div class="item-form"><%= f.submit "支払い確定",{class:"btn btn-outline-secondary"} %></div>
+   <% end %>
+</div>
+<div class= "table_links">
+    <%=link_to 'もどる', items_path %>
+</div>
+<%= render "devise/shared/footer" %>
