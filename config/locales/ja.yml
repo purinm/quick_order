@@ -1,0 +1,11 @@
+ja:
+ activerecord:
+   attributes:
+     user:
+       name: ユーザー名
+       phone_number: 電話番号
+       email: メールアドレス
+       password: パスワード
+     tweet:
+       text: テキスト
+       image: 画像

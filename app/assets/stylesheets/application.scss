@@ -63,6 +63,30 @@ body {
 select#keyword{
   width:100px;
 }
+.loginout{
+  width:380px;
+  margin:0 auto;
+  padding:50px 0 0 0 ;
+}
+.loginout>h2{
+  padding:0 0 30px 0;
+}
+.field{
+  width:80%;
+  margin:0 auto 30px;
+  text-align: left;
+}
+
+.field input{
+  width:100%;
+  font-size:16px;
+}
+.actions{
+  padding:20px 0 ;
+}
+.alert {
+  z-index: 20;
+}
 
 $font-size-base :16px;
 @import "bootstrap";

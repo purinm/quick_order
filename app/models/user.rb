@@ -9,8 +9,8 @@ class User < ApplicationRecord
 #  has_many :tables
   
   validates :name, presence: true
-  validates :phone_number, format: { with: /\A[0-9]{,11}\z/, message: 'ハイフン(-)を含めてください' }
-  validates :password, presence: true, confirmation: true, length: { minimum: 6, message: '6文字以上入力してください' },
+  validates :phone_number, presence: true, format: { with: /\A[0-9]{,11}\z/, message: 'ハイフン(-)を含めてください' }
+  validates :password, presence: true, confirmation: true, length: { minimum: 6,},
                       format: { with: /\A(?=.*?[a-zA-Z])(?=.*?\d)[a-zA-Z\d]{6,}\z/,
                                  message: 'は英数字混合で入力してください' }
 

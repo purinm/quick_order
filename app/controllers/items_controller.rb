@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except:[:index,:show]
+  before_action :set_items, only: [:edit, :show, :update, :destroy]
 
   def index
     @items = Item.all
@@ -23,29 +24,22 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
-    @cart = Cart.new
-  #  @purchase = Purchase.where(item_id: @item.id)
+   @cart = Cart.new
   end
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
-    @item = Item.find(params[:id])
     @item.update(item_params)
     if @item.update(item_params)
       redirect_to "/"    
     else
       render :edit
-      
     end
   end
 
   def destroy
-    # binding.pry
-    @item = Item.find(params[:id])
      if  current_user.id == @item.user_id 
           @item.destroy
           redirect_to root_path
@@ -64,9 +58,13 @@ class ItemsController < ApplicationController
   end
 
   private
-
   def item_params
     params.require(:item).permit(
       :image, :name, :description, :genre_id, :cost).merge(user_id: current_user.id)
   end
+
+  def set_items
+    @item = Item.find(params[:id])
+  end
+
 end

@@ -1,19 +1,8 @@
-<header>
-  
-
- <%
-=begin%>
- <div class="alert alert-info text-center mb-0 rounded-0 alert-dismissile fade show" role="alert">
-        News! News! News! News! News!
-  <button class="close" data-dismiss="alert">&times;</button>
-</div>  
-<%
-=end%>
-
+<header> 
 <% if user_signed_in? %>
 <section>
   <div class="navtop">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <a class="navbar-brand" href="">home</a>
       <button
         class="navbar-toggler"
@@ -26,7 +15,7 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
           <li><%= link_to("新規メニュー", new_item_path, {class: "nav-link"}) %></li>
           <li><%= link_to("テーブル管理", new_table_path, {class: "nav-link"}) %></li>
@@ -69,21 +58,38 @@
     </nav>
   </div>
   </section>
+  <div class="alert alert-info text-center mb-0 rounded-0 alert-dismissile fade show" role="alert">
+         News！  新メニュー追加しました！
+   <button class="close" data-dismiss="alert">&times;</button>
+</div>
 <% end %> 
 
 <div class='title-contents'>
   <h1><a href="/">Quick Order </a></h1>
   <% if user_signed_in? %>
     <p><%="こんにちは、#{current_user.name}さん"%></p>
-   
   <% else%>
-      <% unless user_signed_in? %>
-        <p>こんにちは、ゲストさん  <p>
-         <% if session[:table_id].present? %> 
+    <p>こんにちは、ゲストさん  <p>
+        <% if session[:table_id].present? %> 
           <p>選択中のテーブルは&emsp;<%= session[:table_id] %></p>
-        <% end %>   
+        <% else %> 
+          <p>テーブルを選択しましょう</p>  
       <% end %>   
  <% end %>
 </div>
-
+<script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
 </header>
