@@ -8,6 +8,7 @@ class PurchasesController < ApplicationController
 
   def create
     #buyer がクレカ決済する
+    binding.pry
     @purchase = Purchase.new(purchase_params)  
     if @purchase.valid? # バリデーションの結果確認
       
@@ -65,6 +66,7 @@ class PurchasesController < ApplicationController
   end
 
   def pay_item
+   
     Payjp.api_key = ENV['PAYJP_SECRET_KEY'] # PAYJP側に決済情報を送るのに秘密鍵が必要,かぎを入れるクラス
     Payjp::Charge.create( # 決済に必要な情報を入れるクラス
       amount: @orderObject[:total],

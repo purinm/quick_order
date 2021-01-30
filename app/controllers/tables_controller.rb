@@ -6,8 +6,7 @@ class TablesController < ApplicationController
   @tables = Table.all
  end
  
- 
- def new
+  def new
    @tables = Table.all
    unless user_signed_in?
       render new_table_path
@@ -20,17 +19,6 @@ class TablesController < ApplicationController
       end
     end
   end
-
-#  def update
-#    @tables = Table.all
-#   table = Table.find_by(params[:id])
-#   if table.using == true
-#   table.update(using: false)
-#   else
-#   table.update(using: true)
-#   end
-#   redirect_to tables_path
-#  end
 
   def create 
     @tables = []
