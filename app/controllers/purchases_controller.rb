@@ -50,7 +50,7 @@ class PurchasesController < ApplicationController
  
 
   def get_total_cost
-    orders = Order.where(table_id:session[:table_id])
+    orders = Order.where(table_id:session[:table_id],purchase_id:nil)
     @orderObject = {
       total: 0,
       rows: []
