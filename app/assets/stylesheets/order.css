@@ -3,10 +3,13 @@
   width:80%;
   margin:0 auto;  
   height:400px;
- 
 }
 .order-content:last-child{
   padding:5vh 5vh 0 0 ;
+}
+.order-title{ 
+  padding:60px 0 !important; 
+  text-align: center;
 }
 
 table{
@@ -14,7 +17,6 @@ table{
   border-collapse: collapse;
   position: relative;
   height: 230px;
-
 }
 tbody{
   position:absolute;

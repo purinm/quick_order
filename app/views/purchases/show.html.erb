@@ -1,0 +1,29 @@
+ <%= render "devise/shared/header" %>
+<div class ="order-content2" >
+  <% @orderObject[:rows].each do |row|%> 
+  <div class ="order-list2" >
+      <div class ="order-name" >
+            <p><%= row[:item][:name] %></p> 
+      </div>
+      <div class ="order-hoka" >      
+            <p><%= row[:item][:cost] %>円 <span><%= row[:order][:quantity]%>個</span> </p> 
+      </div>
+    </div>
+  <% end %>
+  <p class="order-space">合計
+  <span id ="total"><%=@orderObject[:total]%>円</span>
+  </p> 
+  <% if @orderObject[:total] == 0 %>
+    <p>支払い未の注文履歴はありません</p>
+  <% else %>
+    
+    <div class="order-links">
+      <p><%= link_to  "クレジット支払いへ",  new_table_purchase_path%></p> 
+    </div> 
+    <div class="table_links">
+    店頭支払い希望の方は
+    <%=link_to "もどる", items_path %>
+    </div>
+  <% end %>
+</div>
+<%= render "devise/shared/footer" %>

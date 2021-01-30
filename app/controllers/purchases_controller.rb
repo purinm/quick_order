@@ -1,14 +1,12 @@
 class PurchasesController < ApplicationController
-  before_action :get_total_cost, only: [:index,:create,:update]
-  before_action :purchase_new, only: [:index,:update]
+  before_action :get_total_cost, only: [:new,:create,:update,:show]
+  before_action :purchase_new, only: [:new,:update]
   
-  def index
-     
+  def new
   end
 
   def create
     #buyer がクレカ決済する
-    binding.pry
     @purchase = Purchase.new(purchase_params)  
     if @purchase.valid? # バリデーションの結果確認
       
@@ -29,10 +27,12 @@ class PurchasesController < ApplicationController
       render 'index'
     end
   end
+  
+  def show
+  end
 
   def update
     purchase = Purchase.create(table_id:params[:table_id],total_cost:params[:total_cost])
-
     params[:order_id].split(' ').map{|n| n.to_i}.each do |params_order|
     Order.where(id:params_order,purchase_id:nil).update_all(purchase_id:purchase.id)
     end
@@ -66,7 +66,6 @@ class PurchasesController < ApplicationController
   end
 
   def pay_item
-   
     Payjp.api_key = ENV['PAYJP_SECRET_KEY'] # PAYJP側に決済情報を送るのに秘密鍵が必要,かぎを入れるクラス
     Payjp::Charge.create( # 決済に必要な情報を入れるクラス
       amount: @orderObject[:total],

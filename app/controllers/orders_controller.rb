@@ -38,18 +38,18 @@ class OrdersController < ApplicationController
         end
       
      else
-      orders = Order.where(table_id:session[:table_id],purchase_id:nil)
-      @orderObject = {
-        total: 0,
-        rows: []
+      @ordered = Order.where(table_id:session[:table_id])
+      @orderedObject = {
+       total: 0,
+       rows: []
       }
-      orders.each do |order|
-        item = Item.find(order[:item_id])
-        @orderObject[:rows].push({
-          order: order,
-          item: item
-        })
-        @orderObject[:total]+=order[:quantity]*item[:cost]
+      @ordered.each do |ordered|
+       orderedItem = Item.find(ordered[:item_id])
+           @orderedObject[:rows].push({
+             order: ordered,
+             item: orderedItem
+           })
+       @orderedObject[:total]+=ordered[:quantity]*orderedItem[:cost]
       end
       unless @order.present?
         redirect_to  items_path
