@@ -79,7 +79,7 @@
     
 <% else %>
   <div class ="order-content2" >
-    <% @orderObject[:rows].each do |row|%> 
+    <% @orderedObject[:rows].each do |row|%> 
     <div class ="order-list2" >
         <div class ="order-name" >
               <p><%= row[:item][:name] %></p> 
@@ -90,9 +90,9 @@
       </div>
     <% end %>
     <p class="order-space">合計
-    <span id ="total"><%=@orderObject[:total]%>円</span>
+    <span id ="total"><%=@orderedObject[:total]%>円</span>
     </p> 
-    <% if @orderObject[:total] == 0 %>
+    <% if @orderedObject[:total] == 0 %>
       <p>注文履歴はありません</p>
     <% end %>
   </div>
