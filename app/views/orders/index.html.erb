@@ -88,12 +88,12 @@
         </div>
       </div>
     <% end %>
-    <p class="order-space">合計
-    <span id ="total"><%=@orderedObject[:total]%>円</span>
-    </p> 
     <% if @orderedObject[:total] == 0 %>
       <p>注文履歴はありません</p>
     <% end %>
+    <p class="order-space">合計
+    <span id ="total"><%=@orderedObject[:total]%>円</span>
+    </p> 
   </div>
 <% end %>
 </div>

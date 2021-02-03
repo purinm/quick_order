@@ -4,14 +4,13 @@
     <div class ="order-list2" >
         <div class ="order-name" >
               <p><%= row[:item][:name] %></p> 
-              <p><%= row[:order][:id] %></p> 
         </div>
         <div class ="order-hoka" >      
               <p><%= row[:item][:cost] %>円 <span><%= row[:order][:quantity]%>個</span> </p> 
         </div>
       </div>
     <% end %>
-  <%= form_with url: table_purchases_path(@orderObject[:order_table_id]), method: :patch, local:true do |f|%>
+  <%= form_with model:@purchase, url: table_purchases_path(@orderObject[:order_table_id]), local:true do |f|%>
     <div class="order-space">
       <%=f.hidden_field :order_id,value: @orders.ids%>
       <p><%= f.label :total_cost,"合計" %></p>

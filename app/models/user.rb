@@ -5,8 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :items
-#  has_many :purchases
-#  has_many :tables
   
   validates :name, presence: true
   validates :phone_number, presence: true, format: { with: /\A[0-9]{,11}\z/, message: 'ハイフン(-)を含めてください' }

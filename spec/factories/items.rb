@@ -3,7 +3,7 @@ FactoryBot.define do
      name {Faker::Name.last_name}
      description{Faker::Lorem.sentence}
      genre_id {Faker::Number.within(range: 2..9) }
-     cost { Faker::Number.within(range: 300..999_999)} 
+     cost { Faker::Number.within(range: 300..99_999)} 
      image { Faker::Lorem.sentence }
      association :user
      

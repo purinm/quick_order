@@ -11,14 +11,14 @@
     <div class = "group">
          <%= f.label :name, "メニュー名" ,{class:"form_label",required: true} %>
         <div class= "form_cont">
-            <%= f.text_area :name, placeholder:"半熟あつあつのたこやき", maxlength:"30", rows:"1",class:"form-control" %>
+            <%= f.text_area :name, placeholder:"苺のショートケーキ", maxlength:"30", rows:"1",class:"form-control" %>
             <p> 20文字まで</p>
           </div>
     </div>
     <div class = "group">
          <p> ひとこと紹介</p>
           <div class= "form_cont">
-            <%= f.text_area :description, placeholder:"明石産の歯応えのあるたこを使用しました。",rows:"5" ,maxlength:"80",class:"form-control" %>
+            <%= f.text_area :description, placeholder:"旬のおいしい苺をたくさん使用しました。",rows:"5" ,maxlength:"80",class:"form-control" %>
             <p> 80文字まで</p>
           </div>
     </div>
@@ -34,7 +34,7 @@
             <%= f.text_field :cost, placeholder:"500",class:"cost form-control",required: true%>&emsp;<span>円</span>
         </div>
      </div>
-  <%= f.submit "出品する",{class:"btn btn-outline-secondary"} %>
+  <%= f.submit "登録する",{class:"btn btn-outline-secondary"} %>
   <% end %>
 </div>
 

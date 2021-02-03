@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
         end
       
      else
-      @ordered = Order.where(table_id:session[:table_id])
+      @ordered = Order.where(table_id:session[:table_id],purchase_id:nil)
       @orderedObject = {
        total: 0,
        rows: []
@@ -69,21 +69,21 @@ class OrdersController < ApplicationController
 
   def show
     # binding.pry
+    @purchase = Purchase.all
     @orders = Order.where(table_id:params[:table][:id],purchase_id:nil)    
-      
-      @orderObject = {
-        total: 0,
-        rows: [],
-        order_table_id:params[:table][:id]
-      }
-      @orders.each do |order|
-        item = Item.find(order[:item_id])
-        @orderObject[:rows].push({
-          order: order,
-          item: item
-        })
-        @orderObject[:total]+=order[:quantity]*item[:cost]
-      end
+    @orderObject = {
+      total: 0,
+      rows: [],
+      order_table_id:params[:table][:id]
+    }
+    @orders.each do |order|
+      item = Item.find(order[:item_id])
+      @orderObject[:rows].push({
+        order: order,
+        item: item
+      })
+      @orderObject[:total]+=order[:quantity]*item[:cost]
+    end
   end
 
   def get_table_num

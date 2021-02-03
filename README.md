@@ -50,12 +50,12 @@ Quick Order (仮)
 
 ## userテーブル
 
-| Column             | Type       | Options                         |
-| ------------------ | ------     | -------------------------       |
-| name               | string     | null: false                     |
-| email              | references | null: false , foreign_key: true |
-| encrypted_password | references | null: false , foreign_key: true |
-| phone_number       | string     | null: false                     |
+| Column             | Type       | Options                    |
+| ------------------ | ------     | -------------------------- |
+| name               | string     | null: false                |
+| email              | references | null: false ,unique: true  |
+| encrypted_password | references | null: false                |
+| phone_number       | string     | null: false                |
 
 ### Association
 - has_many :items

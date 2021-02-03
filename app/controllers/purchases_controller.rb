@@ -6,11 +6,15 @@ class PurchasesController < ApplicationController
   end
 
   def create
-    #buyer がクレカ決済する
+    #buyerが店頭決済するとき＝ admin user が手動で決済処理するとき
+    if user_signed_in?
+      params[:token] = "tencho_token"
+    end
+    
     @purchase = Purchase.new(purchase_params)  
     if @purchase.valid? # バリデーションの結果確認
       
-      #buyerが店頭決済するとき＝ admin user が手動で決済処理するとき
+      #buyer がクレカ決済する
       unless user_signed_in? 
         pay_item # バリデーションパスしたら支払い
       end
@@ -21,22 +25,11 @@ class PurchasesController < ApplicationController
       @order_purhcases.each do |order_purchase|
         order_purchase.update(purchase_id:@purchase.id)
       end
-      #オーダーテーブルの支払いチェックがつくビュー！
-      redirect_to root_path
-    else
-      render 'index'
+    redirect_to root_path
     end
   end
   
   def show
-  end
-
-  def update
-    purchase = Purchase.create(table_id:params[:table_id],total_cost:params[:total_cost])
-    params[:order_id].split(' ').map{|n| n.to_i}.each do |params_order|
-    Order.where(id:params_order,purchase_id:nil).update_all(purchase_id:purchase.id)
-    end
-   redirect_to orders_path
   end
 
   private
