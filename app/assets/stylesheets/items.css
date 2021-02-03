@@ -47,7 +47,7 @@ margin-bottom:0;
 .title-contents {
   width: 100vw;
   height:350px;
-  background-image: url("/images/coffee-header.jpg");
+  background-image: url("images/coffee-header.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top left;
