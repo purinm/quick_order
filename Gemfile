@@ -66,3 +66,4 @@ gem "bootstrap-sass", "~>3.3.6"
 gem "jquery-rails"
 gem "jquery-ui-rails"
 gem 'rails-i18n' #日本語に対応する
+gem "aws-sdk-s3", require: false #S3を使用
