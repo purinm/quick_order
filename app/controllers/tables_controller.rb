@@ -25,7 +25,7 @@ class TablesController < ApplicationController
     if params[:table_quantity_id].present?
       num = params[:table_quantity_id].to_i
       num.times do
-        @tables.push(Table.create!)
+        @tables.push(Table.create)
       end
       redirect_to tables_path
     else

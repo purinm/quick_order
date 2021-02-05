@@ -1,6 +1,4 @@
 class CartsController < ApplicationController
-  # before_action :has_cart_check, only: [:add_item, :update_item, :delete_item]
-
    def index
     carts = Cart.where(table_id: session[:table_id])
     if carts.present?
@@ -48,13 +46,6 @@ class CartsController < ApplicationController
       end
       redirect_to table_carts_path(@cart.table_id)
   end
-
-# def has_cart_check
-#   @carts = Cart.find_by(table_id: session[:table_id])
-#   if @carts.blank?
-#    redirect_to table_carts_path(@carts.table_id)
-#   end
-# end
 end
 
 
