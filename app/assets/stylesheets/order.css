@@ -46,7 +46,8 @@ tbody td:nth-child(3) {
 }
 
 .order-list2{
-  padding: 1vw;
+  width:70%;
+  margin:0 auto;
   display: flex;
   justify-content: space-between;
 }
@@ -59,6 +60,16 @@ tbody td:nth-child(3) {
   display:flex;
   justify-content: center;
 }
+.order-show-space{
+  padding:5vh 0;
+  display:flex;
+  justify-content: center;
+  align-items: baseline;
+}
+.order-show-space > p{
+  padding:0 10px 0 0;
+}
+
 .order-links{
   width:400px;
   padding:5vh 0 10vh 0;
