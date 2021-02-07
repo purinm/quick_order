@@ -6,6 +6,7 @@ class PurchasesController < ApplicationController
   end
 
   def create
+    # binding.pry
     #buyerが店頭決済するとき＝ admin user が手動で決済処理するとき
     if user_signed_in?
       params[:token] = "tencho_token"
@@ -22,6 +23,7 @@ class PurchasesController < ApplicationController
     
       #オーダーテーブルに支払い記録を反映 
       @order_purhcases = Order.where(table_id:@purchase[:table_id],purchase_id:nil)
+  
       @order_purhcases.each do |order_purchase|
         order_purchase.update(purchase_id:@purchase.id)
       end

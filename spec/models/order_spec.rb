@@ -12,25 +12,16 @@ RSpec.describe Order, type: :model do
 
     context "オーダーが保存できる" do
       it "すべての値が正しく入力されていれば保存できること" do
-        @order.reserved = true
         expect(@order).to be_valid
       end
     end
     context "オーダーが保存できない" do
-      it 'reservedが空だと保存できないこと' do
-        @order.reserved = nil
-        @order.valid?
-      end
       it 'table_idが空だと保存できないこと' do
         @order.table_id = nil
         @order.valid?
       end
       it 'item_idが空だと保存できないこと' do
         @order.item_id = nil
-        @order.valid?
-      end
-      it 'quantityが空だと保存できないこと' do
-        @order.quantity = nil
         @order.valid?
       end
     end
