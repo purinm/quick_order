@@ -1,5 +1,6 @@
 <%= render "devise/shared/header" %>
  <div class ="order-content2" >
+ <% if @orders.present?%>
     <% @orderObject[:rows].each do |row|%> 
     <div class ="order-list2" >
         <div class ="order-name" >
@@ -10,13 +11,16 @@
         </div>
       </div>
     <% end %>
-  <%= form_with model:@purchase, url: table_purchases_path(@orderObject[:order_table_id]), local:true do |f|%>
-    <div class="order-space">
-      <%=f.hidden_field :order_id,value: @orders.ids%>
-      <p><%= f.label :total_cost,"合計" %></p>
-      <p class="input-space"><%=f.number_field :total_cost , value:@orderObject[:total],readonly:true %>円</p>
-    </div>
-    <%= f.submit "会計完了" ,{class:"btn btn-outline-secondary"}%>
+    <%= form_with model:@purchase, url: table_purchases_path(@orderObject[:order_table_id]), local:true do |f|%>
+      <div class="order-space">
+        <%=f.hidden_field :order_id,value: @orders.ids%>
+        <p><%= f.label :total_cost,"合計" %></p>
+        <p class="input-space"><%=f.number_field :total_cost , value:@orderObject[:total],readonly:true %>円</p>
+      </div>
+      <%= f.submit "会計完了" ,{class:"btn btn-outline-secondary"}%>
+    <% end %>
+  <% elsif @orders.empty? %>
+  <p>支払い未のオーダー履歴はありません。</p>
   <% end %>
 </div>
 
