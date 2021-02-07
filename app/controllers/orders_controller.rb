@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
         end
       
      else
-      @ordered = Order.where(table_id:session[:table_id],purchase_id:nil)
+      @ordered = Order.where(table_id:session[:table_id])
       @orderedObject = {
        total: 0,
        rows: []
@@ -68,7 +68,6 @@ class OrdersController < ApplicationController
   end
 
   def show
-    # binding.pry
     @purchase = Purchase.all
     @orders = Order.where(table_id:params[:table][:id],purchase_id:nil)    
     @orderObject = {
