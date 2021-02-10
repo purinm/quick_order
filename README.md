@@ -10,9 +10,18 @@ Quick Order (仮)
 - コロナの影響で飲食店経営が非接触な方法へ変化している
 - 経営者は、新たなタブレット導入や環境整備になど費用をかけている
 
-## DEMO 
+## 本番環境
+1. user/店側
+https://quick-order-32005.herokuapp.com/users/sign_in
 
-## 実装内容の予定
+Login
+- メールアドレス: sample@sample.com
+- パスワード: a12345
+
+2. buyer/客側
+https://quick-order-32005.herokuapp.com/
+
+## 実装内容
 1. user/店側
 - メニュー管理(メニュー登録、削除、編集 )
 - オーダー管理（オーダー・支払い状況確認）
@@ -26,6 +35,9 @@ Quick Order (仮)
 - カート管理（登録・表示・削除・個数更新）
 - オーダー履歴表示
 - 決済機能
+
+## 実装予定
+- データベースの変更（MySQLからPostgreSQL）
 
 ## フロー
 1. user/店側
