@@ -1,4 +1,6 @@
 class CartsController < ApplicationController
+  before_action :check_session, only:[:add_item,:update_item,:delete_item]
+
    def index
     carts = Cart.where(table_id: session[:table_id])
     if carts.present?
@@ -45,6 +47,12 @@ class CartsController < ApplicationController
         @cart.destroy
       end
       redirect_to table_carts_path(@cart.table_id)
+  end
+
+  def check_session
+    if session[:table_id] == nil
+     redirect_to  new_table_path
+    end
   end
 end
 
