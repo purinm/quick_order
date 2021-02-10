@@ -12,6 +12,7 @@ Quick Order (仮)
 
 ## 本番環境
 1. user/店側
+
 https://quick-order-32005.herokuapp.com/users/sign_in
 
 Login
@@ -19,6 +20,7 @@ Login
 - パスワード: a12345
 
 2. buyer/客側
+
 https://quick-order-32005.herokuapp.com/
 
 ## 実装内容
